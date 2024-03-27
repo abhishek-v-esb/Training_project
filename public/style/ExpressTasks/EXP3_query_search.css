@@ -1,0 +1,88 @@
+#container {
+  display: flex;
+  justify-content: center;
+}
+#holder {
+  display: flex;
+  flex-direction: column;
+}
+#selecter {
+  display: flex;
+  justify-content: center;
+}
+
+table,
+td,
+th {
+  margin: 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td {
+  padding: 10px;
+}
+th {
+  background-color: #323333;
+  color: white;
+  padding: 10px;
+}
+h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+.container {
+  display: flex;
+  justify-content: left;
+}
+.navigation {
+  display: flex;
+}
+#submit {
+  background-color: lightgreen;
+  border: none;
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+}
+#upper {
+  display: flex;
+  justify-content: space-between;
+}
+.form {
+  display: flex;
+  justify-content: center;
+}
+form {
+  display: flex;
+  align-items: center;
+}
+.count {
+  padding: 0 10px;
+}
+#query {
+  width: 300px;
+  height: 50px;
+  font-size: large;
+}
+button {
+  margin: 0 10px;
+}
+
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: greenyellow;
+}
+
+a:active {
+  color: white;
+}
+a {
+  text-decoration: none;
+}

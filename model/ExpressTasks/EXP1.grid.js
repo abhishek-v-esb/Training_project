@@ -72,16 +72,3 @@ exports.sortedData = (req, res) => {
     }
   );
 };
-
-exports.navigation = (req, res) => {
-  let count = Number(req.query.id) ? req.query.id : 1;
-  if (count == null || count < 1) {
-    count = 1;
-  }
-  if (count > 100) {
-    count = 100;
-  }
-  res.render("pages/ExpressTasks/EXP1_grid/navigation", {
-    count: count,
-  });
-};

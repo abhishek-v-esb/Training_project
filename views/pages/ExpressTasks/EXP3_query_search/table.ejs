@@ -1,0 +1,114 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/ExpressTasks/EXP3_query_search.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="holder">
+        <div class="form">
+          <form action="/EXP3/input?id=1&sql=<%=queryStr%>" method="POST">
+            <div>
+              <textarea name="query" id="query" cols="50" rows="5">
+<%=queryStr%></textarea
+              >
+            </div>
+            <div>
+              <input type="submit" name="submit" id="submit" value="GO!" />
+            </div>
+          </form>
+        </div>
+
+        <table>
+          <%try{%>
+          <tr>
+            <th><%=heading%></th>
+          </tr>
+          <%tables.forEach((element) => {%>
+          <tr>
+            <td><%=Object.values(element)[0]%></td>
+          </tr>
+          <%});%> <%} catch (error) {}%>
+        </table>
+        <%try {%>
+
+        <div class="navigation">
+          <div class="count">
+            <a
+              href="/EXP3/input?id=1&sql=<%=queryStr%>&orderby=<%=orderby%>&field=<%=field%>"
+            >
+              <%if( count==1){%>
+              <button disabled><<</button>
+              <%}else{%>
+              <button><<</button>
+              <%}%>
+            </a>
+          </div>
+
+          <div class="count">
+            <a
+              href="/EXP3/input?id=<%=Number(count)-1%>&sql=<%=queryStr%>&orderby=<%=orderby%>&field=<%=field%>"
+              ><%if( count==1){%>
+              <button disabled><</button>
+              <%}else{%>
+              <button><</button>
+              <%}%></a
+            >
+          </div>
+          <div class="count"><%=Math.ceil(count)%></div>
+
+          <div class="count">
+            <a
+              href="/EXP3/input?id=<%=Number(count)+1%>&sql=<%=queryStr%>&orderby=<%=orderby%>&field=<%=field%>"
+              ><%if( count==total/records){%>
+              <button disabled>></button>
+              <%}else{%>
+              <button>></button>
+              <%}%></a
+            >
+          </div>
+          <div class="count">
+            <a
+              href="/EXP3/input?id=<%=total/records%>&sql=<%=queryStr%>&orderby=<%=orderby%>&field=<%=field%>"
+              ><%if( count==total/records){%>
+              <button disabled>>></button>
+              <%}else{%>
+              <button>>></button>
+              <%}%></a
+            >
+          </div>
+        </div>
+
+        <div class="table">
+          <table border="1">
+            <tr>
+              <%cols.forEach((col)=>{%>
+              <th>
+                <a
+                  href="/EXP3/input?id=<%=count%>&sql=<%=queryStr%>&orderby=<%=orderby%>&field=<%=col%>"
+                  ><div><%=col%></div>
+
+                  <%if(orderby=="asc" && field == col){%> &#x25B5; <%}else
+                  if(orderby=="desc" && field == col){%> &#x25BF; <%}%>
+                </a>
+              </th>
+              <%});%>
+            </tr>
+
+            <%result.forEach((element) => {%>
+            <tr>
+              <%for (let i = 0; i < cols.length; i++) {%>
+              <td><%=Object.values(element)[i]%></td>
+              <%}%>
+            </tr>
+            <%});%>
+          </table>
+        </div>
+
+        <%} catch (error) {}%>
+      </div>
+    </div>
+  </body>
+</html>
