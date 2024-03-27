@@ -1,0 +1,99 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result</title>
+    <link rel="stylesheet" href="data.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="holder">
+        <h3>Abhishek Verma</h3>
+        <h1>Attendence Records</h1>
+        <div class="container">
+          <div class="navigation">
+            <div class="count">
+              <a href="/EXP2/results?count=1&id=<%=std_id%>"
+                ><%if(count==1){%>
+                <button disabled><<</button>
+                <%}else{%>
+                <button><<</button>
+                <%}%></a
+              >
+            </div>
+
+            <div class="count">
+              <a href="/EXP2/results?count=<%=Number(count)-1%>&id=<%=std_id%>"
+                ><%if(count==1){%>
+                <button disabled><</button>
+                <%}else{%>
+                <button><</button>
+                <%}%></a
+              >
+            </div>
+            <div class="count"><%=Math.ceil(count)%></div>
+
+            <div class="count">
+              <a href="/EXP2/results?count=<%=Number(count)+1%>&id=<%=std_id%>"
+                ><%if(count==total/records){%>
+                <button disabled>></button>
+                <%}else{%>
+                <button>></button>
+                <%}%></a
+              >
+            </div>
+            <div class="count">
+              <a href="/EXP2/results?count=<%=total/records%>&id=<%=std_id%>"
+                ><%if(count==total/records){%>
+                <button disabled>>></button>
+                <%}else{%>
+                <button>>></button>
+                <%}%></a
+              >
+            </div>
+          </div>
+        </div>
+        <table border="1">
+          <tr>
+            <th rowspan="2">Student ID</th>
+            <th rowspan="2">Student name</th>
+            <th colspan="2">Prelims (50)</th>
+            <th colspan="2">Terminal (50)</th>
+            <th colspan="2">Final (100)</th>
+            <th rowspan="2">Total</th>
+            <th rowspan="2">Details</th>
+          </tr>
+          <tr>
+            <th>Practical (20)</th>
+            <th>Theory (30)</th>
+            <th>Practical (20)</th>
+            <th>Theory (30)</th>
+            <th>Practical (30)</th>
+            <th>Theory (70)</th>
+          </tr>
+          <%result.forEach(function (element) {%>
+          <tr>
+            <td><%=element.std_id%></td>
+            <td><%=element.std_fname%> <%=element.std_lname%></td>
+            <td><%=element.pre_pr%></td>
+            <td><%=element.pre_th%></td>
+            <td><%=element.ter_pr%></td>
+            <td><%=element.ter_th%></td>
+            <td><%=element.fin_pr%></td>
+            <td><%=element.fin_th%></td>
+            <%var total =
+            element.pre_pr+element.pre_th+element.ter_pr+element.ter_th+element.fin_pr+element.fin_th%>
+
+            <td><%=total%></td>
+            <td>
+              <a target="_blank" href="/EXP2/details?id=<%=element.std_id%>"
+                >View all</a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

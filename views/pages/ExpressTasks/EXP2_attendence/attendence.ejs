@@ -1,0 +1,164 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendence</title>
+    <link rel="stylesheet" href="data.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="holder">
+        <h3>Abhishek Verma</h3>
+        <center><h2>Student Attendence</h2></center>
+        <div id="upper">
+          <div id="selecter">
+            <select name="month" id="month">
+              <option
+                class="option"
+                value="/EXP2/attendence?year=23&month=12&days=31&id=<%=count%>&orderby=<%=orderby%>&field=<%=field%>"
+              >
+                December 23
+              </option>
+              <option
+                class="option"
+                value="/EXP2/attendence?year=24&month=01&days=31&id=<%=count%>&orderby=<%=orderby%>&field=<%=field%>"
+              >
+                January 24
+              </option>
+              <option
+                class="option"
+                value="/EXP2/attendence?year=24&month=02&days=29&id=<%=count%>&orderby=<%=orderby%>&field=<%=field%>"
+              >
+                February 24
+              </option>
+            </select>
+            <button onclick="gotosite()">Search</button>
+          </div>
+          <div class="container">
+            <div class="navigation">
+              <div class="count">
+                <a
+                  href="/EXP2/attendence?year=<%year%>&month=<%month%>&days=<%days%>&id=1&orderby=<%=orderby%>&field=<%=field%>"
+                  ><%if(count==1){%>
+                  <button disabled><<</button>
+                  <%}else{%>
+                  <button><<</button>
+                  <%}%></a
+                >
+              </div>
+
+              <div class="count">
+                <a
+                  href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=Number(count)-1%>&orderby=<%=orderby%>&field=<%=field%>"
+                  ><%if(count==1){%>
+                  <button disabled><</button>
+                  <%}else{%>
+                  <button><</button>
+                  <%}%></a
+                >
+              </div>
+              <div class="count"><%=Math.ceil(count)%></div>
+
+              <div class="count">
+                <a
+                  href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=Number(count)+1%>&orderby=<%=orderby%>&field=<%=field%>"
+                  ><%if(count==total/records){%>
+                  <button disabled>></button>
+                  <%}else{%>
+                  <button>></button>
+                  <%}%></a
+                >
+              </div>
+              <div class="count">
+                <a
+                  href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=total/records%>&orderby=<%=orderby%>&field=<%=field%>"
+                  ><%if(count==total/records){%>
+                  <button disabled>>></button>
+                  <%}else{%>
+                  <button>>></button>
+                  <%}%></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <table border="1">
+            <tr>
+              <th>
+                <div>Student ID</div>
+                <div>
+                  <a
+                    href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=Math.ceil(count)%>&orderby=asc&field="
+                  >
+                    &#x25B5;</a
+                  >
+                  <a
+                    href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=Math.ceil(count)%>&orderby=desc&field="
+                    >&#x25BF;</a
+                  >
+                </div>
+              </th>
+              <th>
+                <div>Student Name</div>
+                <div>
+                  <a
+                    href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=Math.ceil(count)%>&orderby=asc&field=std_fname"
+                  >
+                    &#x25B5;</a
+                  >
+                  <a
+                    href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=Math.ceil(count)%>&orderby=desc&field=std_fname"
+                    >&#x25BF;</a
+                  >
+                </div>
+              </th>
+              <th>
+                <div>Present days</div>
+                <div>
+                  <a
+                    href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=Math.ceil(count)%>&orderby=asc&field=count"
+                  >
+                    &#x25B5;</a
+                  >
+                  <a
+                    href="/EXP2/attendence?year=<%=year%>&month=<%=month%>&days=<%=days%>&id=<%=Math.ceil(count)%>&orderby=desc&field=count"
+                    >&#x25BF;</a
+                  >
+                </div>
+              </th>
+              <th>Present %</th>
+            </tr>
+            <%result.forEach(function (element) {%>
+            <tr>
+              <td><%=element.std_id%></td>
+              <td><%=element.std_fname%> <%=element.std_lname%></td>
+              <td><%=element.count%></td>
+              <%let per = (element.count*100)/days%>
+
+              <td><%=per.toFixed(2)%> %</td>
+            </tr>
+
+            <% }); %>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var input = document.getElementById("month");
+        if (sessionStorage["month"]) {
+          input.value = sessionStorage["month"];
+        }
+        input.onchange = function () {
+          sessionStorage["month"] = this.value;
+        };
+      });
+      function gotosite() {
+        var value = document.getElementById("month").value;
+        window.location.href = value;
+        return;
+      }
+    </script>
+  </body>
+</html>

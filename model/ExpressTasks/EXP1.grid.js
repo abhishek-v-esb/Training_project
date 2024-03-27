@@ -26,7 +26,7 @@ exports.sortedData = (req, res) => {
   const records = 500;
   let count = Number(req.query.id);
   let field = req.query.field;
-  console.log(field);
+
   if (count == null || count < 1) {
     count = 1;
   }
