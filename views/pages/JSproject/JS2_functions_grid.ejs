@@ -1,0 +1,210 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+    <style>
+        #container {
+            display: flex;
+            height: 900px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        table,
+        td {
+            height: 180px;
+            width: 90px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) td:nth-child(even),
+        tr:nth-child(odd) td:nth-child(odd) {
+            background: deepskyblue;
+        }
+
+        tr:nth-child(odd) td:nth-child(even),
+        tr:nth-child(even) td:nth-child(odd) {
+            background: white;
+        }
+    </style>
+</head>
+
+<body onload="onLoad()" onresize="onResize()">
+    <h3>Abhishek Verma</h3>
+    <h3>24DEV035</h3>
+    <h3>01/02/2024</h3>
+    <div id="container">
+        <table>
+            <tr>
+                <td class="cell"><img src="image.jpg" onerror="onError()"></img></td>
+
+                <td class="cell" id="onclick" onclick="onClick()">onclick()</td>
+
+                <td class="cell"><input placeholder="onblur()" id="onblur" onblur="onBlur()" type="text"></td>
+
+                <td class="cell"><input placeholder="onchange()" type="text" id="onchange" onchange="onChange()"></td>
+
+                <td class="cell" id="oncontextmenu" oncontextmenu="onContextMenu()">oncontextmenu()</td>
+            </tr>
+            <tr>
+                <td class="cell" id="ondbclick" ondblclick="onDbClick()">ondbclick()</td>
+
+                <td class="cell" draggable="true" id="ondrag" ondrag="onDrag()">ondrag()</td>
+
+                <td class="cell"><input placeholder="onfocus()" id="onfocus" onfocus="onFocus()" type="text"></td>
+
+                <td class="cell"><input value="oninput()" type="text" id="oninput" oninput="onInput()"></td>
+
+                <td class="cell">
+                    <form action=""><input type="text" id="oninvalid" oninvalid="onInvalid()" required>
+                        <input type="submit" value="Submit">
+                    </form>
+                </td class="cell">
+            </tr>
+            <tr>
+                <td class="cell"><input placeholder="onkeydown()" type="text" id="onkeydown" onkeydown="onKeyDown()">
+                </td>
+                <td class="cell"><input placeholder="onkeypress()" type="text" id="onkeypress"
+                        onkeypress="onKeyPress()">
+                </td>
+                <td class="cell"><input placeholder="onkeyup()" type="text" id="onkeyup" onkeyup="onKeyUp()"></td>
+                <td class="cell" id="onmouseupdown" onmouseup="onMouseUp()" onmousedown="onMouseDown()">
+                    onmouseup()/down()
+                </td>
+                <td class="cell" id="onmouseenterleave" onmouseenter="onMouseEnter()" onmouseleave="onMouseLeave()">
+                    onmouseenter()/leave()</td>
+            </tr>
+            <tr>
+                <td class="cell"><input value="onmousemove()" onmousemove="onMouseMove()" type="text" name=""
+                        id="onmousemove"></td>
+                <td class="cell"><input value="onmouseover()/out()" id="onmouseoverout" onmouseover="onMouseOver()"
+                        onmouseout="onMouseOut()" type="text"></td>
+                
+                <td class="cell">
+                    <form><input type="text">
+                        <input type="reset" onreset="onReset()" id="onreset">
+                    </form>
+                </td>
+                <td><input oncopy="onCopy()" type="text" id="oncopy" value="Copy Me"></td>
+                <td class="cell"><input oncut="onCut()" type="text" id="oncut" value="Cut me"></td>
+            </tr>
+            <tr>
+                <td class="cell"><input onpaste="onPaste()" type="text" id="onpaste" placeholder="paste here"></td>
+                <td class="cell" id="ondragstart" draggable="true" ondragstart="onDragStart()">ondragstart()</td>
+                <td class="cell" id="ondragend" draggable="true" ondragend="onDragEnd()">ondragend()</td>
+                
+            </tr>
+        </table>
+    </div>
+    <script>
+        
+        function onError() {
+            alert("this image coud not be loaded");
+        }
+        function onClick() {
+            document.getElementById("onclick").innerHTML = "onclick occured";
+            alert("onclick() triggered");
+        }
+        function onBlur() {
+            alert("input feild out of focus");
+        }
+        function onChange() {
+            var x = document.getElementById("onchange");
+            x.value = x.value.length;
+            alert("onchange() triggered");
+        }
+        function onContextMenu() {
+            alert("right click pressed.\noncontextmenu() triggered");
+        }
+        function onDbClick() {
+            document.getElementById("ondbclick").innerHTML = "double clicked";
+            alert("double click pressed.\nondbclick() triggered");
+        }
+        function onDrag() {
+            document.getElementById("ondrag").innerHTML = "dragged!";
+            alert("ondrag() triggered");
+        }
+        function onFocus() {
+            var y = document.getElementById("onfocus")
+            y.style.background = "red";
+            alert("onFocus triggered");
+        }
+        function onInput() {
+            document.getElementById("oninput").innerHTML = "input changed";
+            alert("oninput() triggered");
+        }
+        function onInvalid() {
+            alert("form empty.\noninvalid() triggered");
+        }
+        function onKeyPress() {
+            alert("you pressed a key");
+        }
+        function onKeyUp() {
+            alert("you released a key");
+        }
+        function onLoad() {
+            alert("WELCOME TO EVENT TESTING");
+        }
+        function onMouseUp() {
+            document.getElementById("onmouseupdown").style.color = "red";
+        }
+        function onMouseDown() {
+            document.getElementById("onmouseupdown").style.color = "blue";
+        }
+        function onMouseEnter() {
+            document.getElementById("onmouseenterleave").style.color = "orange";
+        }
+        function onMouseLeave() {
+            document.getElementById("onmouseenterleave").style.color = "green";
+        }
+        function onMouseMove() {
+            document.getElementById("onmousemove").style.background = "cyan";
+        }
+        function onMouseOver() {
+            document.getElementById("onmouseoverout").style.background = "blue";
+        }
+        function onMouseOut() {
+            document.getElementById("onmouseoverout").style.background = "green";
+        }
+        
+        function onReset() {
+            alert("page reset!");
+        }
+        function onCopy() {
+            document.getElementById("oncopy").innerHTML = "Text copied";
+            alert("text copied.\noncopy() triggered");
+        }
+        function onCut() {
+            document.getElementById("oncut").innerHTML = "text copied";
+            alert("text copied.\noncut() triggered");
+        }
+        function onPaste() {
+            document.getElementById("onpaste").innerHTML = "text pasted";
+            alert("text pasted.\nonpaste() triggered");
+        }
+        function onDragStart() {
+            document.getElementById("ondragstart").style.background = "red";
+        }
+        function onDragEnd() {
+            document.getElementById("ondragend").style.background = "red";
+        }
+        function onResize(){
+            let width = outerWidth
+            let height = outerHeight
+            let txt = "width is "+width+" height is "+height;
+            alert(txt)
+        }
+
+    </script>
+</body>
+
+</html>
