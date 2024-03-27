@@ -7,5 +7,7 @@ routes.get("/dynamicGrid", authorization.authorization, (req, res) => {
 routes.get("/functionGrid", authorization.authorization, (req, res) => {
   res.render("pages/JSproject/JS2_functions_grid");
 });
-
+routes.get("/kukuCube", authorization.authorization, (req, res) => {
+  res.render("pages/JSproject/JS3_kuku_cube");
+});
 module.exports = routes;
