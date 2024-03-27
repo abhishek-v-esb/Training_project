@@ -1,0 +1,59 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div id="ip-holder">
+        <h2>Register</h2>
+        <form id="form">
+          <div class="ip-fields">
+            <label for="firstname">First Name</label><br />
+            <input type="text" name="firstname" id="firstname" />
+            <span id="firstname_error" class="errors">Enter First Name</span>
+          </div>
+          <div class="ip-fields">
+            <label for="lastname">Last Name</label><br />
+            <input type="text" name="lastname" id="lastname" />
+            <span id="lastname_error" class="errors">Enter Last Name</span>
+          </div>
+          <div class="ip-fields">
+            <label for="gender">Gender</label><br />
+            <input type="text" name="gender" id="gender" />
+            <span id="gender_error" class="errors">Enter Gender</span>
+          </div>
+          <div class="ip-fields">
+            <label for="email">Email</label><br />
+            <input type="text" name="email" id="email" />
+            <span id="email_exists_error" class="errors">User exists</span>
+            <span id="email_error" class="errors">Enter Email</span>
+          </div>
+          <div class="ip-fields">
+            <label for="dob">Date of birth</label><br />
+            <input type="date" name="dob" id="dob" />
+            <span id="dob_error" class="errors">Enter Date Of Birth</span>
+          </div>
+          <div class="ip-fields">
+            <label for="mobile">Mobile</label><br />
+            <input type="text" name="mobile" id="mobile" />
+            <span id="mobile_error" class="errors">Enter Mobile Number</span>
+          </div>
+
+          <div class="ip-fields" id="submit-div">
+            <input type="submit" value="Submit" id="submit" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

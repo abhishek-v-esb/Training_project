@@ -1,0 +1,77 @@
+body {
+  background-color: #fefefe;
+  font-family: "Ubuntu", sans-serif;
+}
+form {
+  background-color: #98cfff;
+  padding: 20px;
+  border-radius: 10px;
+}
+#ip-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90vh;
+  align-items: center;
+}
+
+.ip-fields {
+  margin: 10px;
+}
+.errors {
+  display: none;
+  color: red;
+}
+#login {
+  display: flex;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  background-color: #1e89ef;
+  border: none;
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+}
+#login-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+}
+#forgot {
+  text-align: right;
+}
+#submit {
+  display: flex;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  background-color: #00b900;
+  border: none;
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+}
+a {
+  width: 300px;
+}
+#submit-div {
+  width: 300px;
+  overflow-wrap: break-word;
+}
+input {
+  margin: 5px 0;
+  font-size: medium;
+  height: 35px;
+  width: 300px;
+  border: none;
+  padding: 10px;
+}
+#mess-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}

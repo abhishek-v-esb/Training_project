@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="ip-holder">
+        <div id="fin-div">
+          <h1><center>Login</center></h1>
+          <form id="form">
+            <div class="ip-fields">
+              <label for="loginEmail">Email</label><br />
+              <input type="text" name="loginEmail" id="loginEmail" />
+              <span id="loginEmail_error" class="errors">Enter Email</span>
+            </div>
+            <div class="ip-fields" id="lower-div">
+              <label for="loginPassword">Password</label><br />
+              <input type="password" name="loginPassword" id="loginPassword" />
+              <span id="loginPassword_error" class="errors"
+                >Enter Password</span
+              >
+              <span id="invalid_error" class="errors"
+                >Email or Password do not match</span
+              >
+            </div>
+
+            <div class="ip-fields" id="login-div">
+              <input type="submit" value="Login" id="login" />
+              <a id="forgot" href="/forgot">Forgot Password</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
