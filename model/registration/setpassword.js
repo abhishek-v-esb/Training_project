@@ -23,7 +23,7 @@ exports.checkStatus = (req, res) => {
       const timeDiff = d2 - d1;
 
       if (timeDiff < 10000) {
-        res.render("pages/password", {
+        res.render("pages/registration/password", {
           id: req.query.id,
         });
       } else {
@@ -38,7 +38,7 @@ exports.checkStatus = (req, res) => {
       function (err) {
         if (err) throw err;
         const link = ` http://localhost:8016/password?activeCode=${code}&id=${req.query.id}`;
-        res.render("pages/regenerateLink", {
+        res.render("pages/registration/regenerateLink", {
           link: link,
         });
       }

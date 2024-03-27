@@ -7,6 +7,22 @@ form {
   padding: 20px;
   border-radius: 10px;
 }
+
+table,
+td,
+tr {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 20px;
+}
+.projectName {
+  text-decoration: none;
+}
+
 #ip-holder {
   display: flex;
   flex-direction: column;
