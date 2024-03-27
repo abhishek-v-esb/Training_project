@@ -1,0 +1,154 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #e6e6fa;
+      }
+      #headerDiv {
+        display: flex;
+        height: 10%;
+        background-color: black;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        font-size: xx-large;
+        font-family: Verdana, sans-serif;
+      }
+      #tableDiv {
+        display: flex;
+        height: 80%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      td {
+        height: 100px;
+        width: 100px;
+        text-align: center;
+        font-size: xx-large;
+        font-weight: bold;
+        background-color: tomato;
+        color: white;
+        border-radius: 10%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      #table {
+        text-align: center;
+        font-size: xx-large;
+      }
+      footer {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="headerDiv">
+        <h3>Tic - Tac - Toe</h3>
+      </div>
+      <div id="tableDiv">
+        <table id="table">
+          <tr>
+            <td class="tictacCells"></td>
+            <td class="tictacCells"></td>
+            <td class="tictacCells"></td>
+          </tr>
+          <tr>
+            <td class="tictacCells"></td>
+            <td class="tictacCells"></td>
+            <td class="tictacCells"></td>
+          </tr>
+          <tr>
+            <td class="tictacCells"></td>
+            <td class="tictacCells"></td>
+            <td class="tictacCells"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <footer>Abhishek Verma 24DEV035 05/02/2024</footer>
+    <script>
+      let xInputs = [];
+      let oInputs = [];
+      let checker = [];
+      let count = 0;
+
+      let xORo = "X";
+
+      for (let index = 0; index < 9; index++) {
+        const classes = document.getElementsByClassName("tictacCells");
+        classes[index].addEventListener("click", clicked);
+        classes[index].id = "cell" + index;
+      }
+
+      function clicked() {
+        const cellId = event.target.id;
+
+        if (xORo === "X") {
+          const cell = document.getElementById(cellId);
+          const cellNo = cellId.charAt(cellId.length - 1);
+          xInputs.push(cellNo);
+          // console.log(xInputs);
+          cell.innerHTML = "O";
+          xORo = "O";
+          cell.removeEventListener("click", clicked);
+          // createX();
+          checker = xInputs;
+          count++;
+          checking();
+        } else {
+          const cell = document.getElementById(cellId);
+          const cellNo = cellId.charAt(cellId.length - 1);
+          oInputs.push(cellNo);
+          // console.log(oInputs);
+          cell.innerHTML = "X";
+          xORo = "X";
+          cell.removeEventListener("click", clicked);
+          checker = oInputs;
+          checking();
+          count++;
+        }
+      }
+
+      function checking() {
+        if (count < 9) {
+          if (
+            (checker.includes("0") &&
+              checker.includes("1") &&
+              checker.includes("2")) ||
+            (checker.includes("3") &&
+              checker.includes("4") &&
+              checker.includes("5")) ||
+            (checker.includes("6") &&
+              checker.includes("7") &&
+              checker.includes("8")) ||
+            (checker.includes("0") &&
+              checker.includes("4") &&
+              checker.includes("8")) ||
+            (checker.includes("6") &&
+              checker.includes("4") &&
+              checker.includes("2")) ||
+            (checker.includes("0") &&
+              checker.includes("3") &&
+              checker.includes("6")) ||
+            (checker.includes("1") &&
+              checker.includes("4") &&
+              checker.includes("7")) ||
+            (checker.includes("2") &&
+              checker.includes("5") &&
+              checker.includes("8"))
+          ) {
+            document.getElementById("table").innerHTML =
+              "GAME OVER !<br><br>" + xORo + " WINS !";
+          }
+        } else {
+          document.getElementById("table").innerHTML = "GAME DRAW !";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -10,4 +10,7 @@ routes.get("/functionGrid", authorization.authorization, (req, res) => {
 routes.get("/kukuCube", authorization.authorization, (req, res) => {
   res.render("pages/JSproject/JS3_kuku_cube");
 });
+routes.get("/ticTacToe", authorization.authorization, (req, res) => {
+  res.render("pages/JSproject/JS4_tic_tac_toe");
+});
 module.exports = routes;
