@@ -1,4 +1,4 @@
-const authorization = require("../controller/registration/authorization");
+const authorization = require("../middleware/registration/authorization");
 
 const routes = require("express").Router();
 routes.get("/dynamicGrid", authorization.authorization, (req, res) => {

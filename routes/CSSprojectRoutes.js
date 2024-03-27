@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const authorization = require("../controller/registration/authorization");
+const authorization = require("../middleware/registration/authorization");
 
 routes.get("/ehya", authorization.authorization, (req, res) => {
   res.render("pages/CSSproject/CSS1_ehya.ejs");

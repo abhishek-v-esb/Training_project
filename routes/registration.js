@@ -4,7 +4,7 @@ const register = require("../model/registration/register");
 const setpassword = require("../model/registration/setpassword");
 const login = require("../model/registration/login");
 const forgotPass = require("../model/registration/forgot");
-const authorization = require("../controller/registration/authorization");
+const authorization = require("../middleware/registration/authorization");
 
 routes.get("/register", (req, res) => {
   res.render("pages/registration/index");
