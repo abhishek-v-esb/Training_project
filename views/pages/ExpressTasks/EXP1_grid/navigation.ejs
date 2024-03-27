@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <!-- <%console.log(count)%> -->
+      <button><a href="/EXP1/navigation?id=1"><<</a></button>
+      <%countDec = count -1%>
+      <button><a href="/EXP1/navigation?id=<%=countDec%>"><</a></button>
+      <div><%=count%></div>
+      <%countInc = count +1%>
+      <button><a href="/EXP1/navigation?id=<%=countInc%>">></a></button>
+      <button><a href="/EXP1/navigation?id=250">>></a></button>
+      <!-- <%console.log(count)%> -->
+    </div>
+  </body>
+</html>

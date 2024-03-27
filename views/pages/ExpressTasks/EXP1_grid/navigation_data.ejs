@@ -1,0 +1,99 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="navigation_data.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- <%console.log(count)%> -->
+      <div class="navigation">
+        <div>
+          <a href="/EXP1/sorted?id=1&field=<%=field%>"><button><<</button></a>
+        </div>
+        <%countDec = count -1%>
+        <div>
+          <a href="/EXP1/sorted?id=<%=countDec%>&field=<%=field%>"
+            ><button><</button></a
+          >
+        </div>
+        <div><%=count%></div>
+        <%countInc = count +1%>
+        <div>
+          <a href="/EXP1/sorted?id=<%=countInc%>&field=<%=field%>"
+            ><button>></button></a
+          >
+        </div>
+        <div>
+          <a href="/EXP1/sorted?id=500&field=<%=field%>"><button>>></button></a>
+        </div>
+      </div>
+    </div>
+    <p>Ordered by : <%=field%></p>
+    <table border="1">
+      <tr>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=std_id">Student ID</a>
+        </th>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=std_fname">First Name</a>
+        </th>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=std_lname">Last Name</a>
+        </th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=gender">Gender</a></th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=email">Email</a></th>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=dob">Date Of Birth</a>
+        </th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=city">City</a></th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=country">Country</a></th>
+        <th><a href="/EXP1/sorted?id=<%=count%>&field=sem">Sem</a></th>
+        <th>
+          <a href="/EXP1/sorted?id=<%=count%>&field=entry_time">Entry Time</a>
+        </th>
+      </tr>
+      <%result.forEach(function (element) {%>
+      <tr>
+        <td><%= element.std_id%></td>
+        <td><%= element.std_fname%></td>
+        <td><%= element.std_lname%></td>
+        <td><%= element.gender%></td>
+        <td><%= element.email%></td>
+        <td><%= element.dob.toLocaleDateString();%></td>
+        <td><%= element.city%></td>
+        <td><%= element.country%></td>
+        <td><%= element.sem%></td>
+        <td><%= element.entry_time%></td>
+      </tr>
+      <% }); %>
+    </table>
+    <div class="container">
+      <!-- <%console.log(count)%> -->
+      <div class="navigation">
+        <div>
+          <a href="/EXP1/sorted?id=<%=count%>&field=<%=field%>"
+            ><button><<</button></a
+          >
+        </div>
+        <%countDec = count -1%>
+        <div>
+          <a href="/EXP1/sorted?id=<%=countDec%>&field=<%=field%>"
+            ><button><</button></a
+          >
+        </div>
+        <div><%=count%></div>
+        <%countInc = count +1%>
+        <div>
+          <a href="/EXP1/sorted?id=<%=countInc%>&field=<%=field%>"
+            ><button>></button></a
+          >
+        </div>
+        <div>
+          <a href="/EXP1/sorted?id=500&field=<%=field%>"><button>>></button></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
