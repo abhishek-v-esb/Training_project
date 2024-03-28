@@ -203,10 +203,7 @@ function afterLogin(data) {
   if (data == "false") {
     document.getElementById("invalid_error").style.display = "block";
   } else {
-    const div = document.getElementById("fin-div");
-    const h1 = document.createElement("h1");
-    h1.innerHTML = "Login Successful";
-    div.parentNode.replaceChild(h1, div);
+    location.href = "/projects";
   }
 }
 

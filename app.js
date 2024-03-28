@@ -11,6 +11,7 @@ const CSSroutes = require("./routes/CSSprojectRoutes");
 const EXP1 = require("./routes/ExpressRoutes/EXP1.grid.route.js");
 const EXP2 = require("./routes/ExpressRoutes/EXP2.attendence.route.js");
 const EXP3 = require("./routes/ExpressRoutes/EXP3.query.search.route.js");
+const EXP4 = require("./routes/ExpressRoutes/EXP4.multiple.search.route.js");
 
 app.set("view engine", "ejs");
 
@@ -25,6 +26,7 @@ app.use("/", CSSroutes);
 app.use("/EXP1", EXP1);
 app.use("/EXP2", EXP2);
 app.use("/EXP3", EXP3);
+app.use("/EXP4", EXP4);
 
 app.listen(port, () => {
   console.log(`server listening at ${port}`);

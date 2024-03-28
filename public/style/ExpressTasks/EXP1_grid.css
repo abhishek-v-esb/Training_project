@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+
+  justify-content: center;
+}
+.navigation {
+  display: flex;
+  width: 500px;
+  justify-content: space-around;
+}
+table {
+  border-collapse: collapse;
+  margin: 20px;
+}
+td {
+  padding: 10px;
+}
+th {
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+a {
+  text-decoration: none;
+  color: blue;
+}
+a:visited {
+  color: green;
+}
+.navigation {
+  display: flex;
+}

@@ -1,0 +1,215 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="/style/ExpressTasks/EXP4_multiple_search.css"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <div class="holder">
+        <div id="form1" class="form">
+          <form action="/EXP4/input?id=1" method="POST">
+            <input
+              class="input"
+              placeholder="std_id(1,2,3,...)"
+              type="text"
+              name="input"
+              tabindex="1"
+              autofocus
+              value="<%=stdId%>"
+            />
+            <input class="submit" type="submit" value="GO!" />
+          </form>
+        </div>
+
+        <div id="viewDiv">
+          <button id="view" onclick="visible()">View more</button>
+        </div>
+
+        <div id="moreBlock">
+          <form class="form" action="/EXP4/input?id=1" method="POST">
+            <div class="fields">
+              First Name:<input
+                class="input"
+                type="text"
+                name="std_fname"
+                value="<%=std_fname%>"
+                tabindex="1"
+                autofocus
+              />
+            </div>
+            <div class="fields">
+              Last Name:
+              <input
+                class="input"
+                type="text"
+                name="std_lname"
+                value="<%=std_lname%>"
+                tabindex="2"
+              />
+            </div>
+            <div class="fields">
+              Gender:
+              <input
+                class="input"
+                type="text"
+                name="gender"
+                value="<%=gender%>"
+                tabindex="3"
+              />
+            </div>
+            <div class="fields">
+              Date Of Birth:
+              <input
+                class="input"
+                type="text"
+                name="dob"
+                value="<%=dob%>"
+                tabindex="4"
+              />
+            </div>
+            <div class="fields">
+              City:
+              <input
+                class="input"
+                type="text"
+                name="city"
+                value="<%=city%>"
+                tabindex="5"
+              />
+            </div>
+            <div class="fields">
+              Country:
+              <input
+                class="input"
+                type="text"
+                name="country"
+                value="<%=country%>"
+                tabindex="6"
+              />
+            </div>
+            <div class="fields">
+              Sem:
+              <input
+                class="input"
+                type="text"
+                name="sem"
+                value="<%=sem%>"
+                tabindex="7"
+              />
+            </div>
+
+            <input class="submit" type="submit" value="GO!" />
+          </form>
+        </div>
+
+        <%try {%>
+        <div class="navigation">
+          <div class="count">
+            <a href="/EXP4/input?id=1">
+              <%if( count==1){%>
+              <button disabled><<</button>
+              <%}else{%>
+              <button><<</button>
+              <%}%>
+            </a>
+          </div>
+
+          <div class="count">
+            <a href="/EXP4/input?id=<%=Number(count)-1%>"
+              ><%if( count==1){%>
+              <button disabled><</button>
+              <%}else{%>
+              <button><</button>
+              <%}%></a
+            >
+          </div>
+          <div class="count"><%=Math.ceil(count)%></div>
+
+          <div class="count">
+            <a href="/EXP4/input?id=<%=Number(count)+1%>"
+              ><%if( count==total/records){%>
+              <button disabled>></button>
+              <%}else{%>
+              <button>></button>
+              <%}%></a
+            >
+          </div>
+          <div class="count">
+            <a href="/EXP4/input?id=<%=total/records%>"
+              ><%if( count==total/records){%>
+              <button disabled>>></button>
+              <%}else{%>
+              <button>>></button>
+              <%}%></a
+            >
+          </div>
+        </div>
+
+        <div class="table">
+          <table border="1">
+            <tr>
+              <%cols.forEach((col)=>{%>
+              <th>
+                <div><%=col%></div>
+              </th>
+              <%});%>
+            </tr>
+
+            <%result.forEach((element) => {%>
+            <tr>
+              <%for (let i = 0; i < cols.length; i++) {%>
+              <td><%=Object.values(element)[i]%></td>
+              <%}%>
+            </tr>
+            <%});%>
+          </table>
+        </div>
+
+        <%} catch (error) {}%>
+      </div>
+    </div>
+
+    <%if(std_fname != undefined || std_lname != undefined || gender != undefined
+    || dob != undefined || city != undefined || country != undefined || sem !=
+    undefined ){%>
+    <script>
+      function visible() {
+        const view = document.getElementById("view");
+        const moreBlock = document.getElementById("moreBlock");
+        if (view.innerHTML == "View more") {
+          moreBlock.style.visibility = "visible";
+          view.innerHTML = "View less";
+          const form1 = document.getElementById("form1");
+          console.log(form1);
+          form1.forEach((element) => {
+            element.disabled = true;
+          });
+        } else {
+          moreBlock.style.visibility = "hidden";
+          view.innerHTML = "View more";
+        }
+      }
+      visible();
+    </script>
+    <%}%>
+    <script>
+      function visible() {
+        const view = document.getElementById("view");
+        const moreBlock = document.getElementById("moreBlock");
+        if (view.innerHTML == "View more") {
+          moreBlock.style.visibility = "visible";
+          view.innerHTML = "View less";
+          document.getElementById("form2").disabled = true;
+        } else {
+          moreBlock.style.visibility = "hidden";
+          view.innerHTML = "View more";
+        }
+      }
+    </script>
+  </body>
+</html>
