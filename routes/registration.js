@@ -1,10 +1,10 @@
 const routes = require("express").Router();
 
-const register = require("../model/registration/register");
-const setpassword = require("../model/registration/setpassword");
-const login = require("../model/registration/login");
-const forgotPass = require("../model/registration/forgot");
-const authorization = require("../middleware/registration/authorization");
+const register = require("../controllers/registration/register");
+const setpassword = require("../controllers/registration/setpassword");
+const login = require("../controllers/registration/login");
+const forgotPass = require("../controllers/registration/forgot");
+const authorization = require("../middleware/authorization");
 
 routes.get("/register", (req, res) => {
   res.render("pages/registration/index");

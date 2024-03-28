@@ -1,15 +1,15 @@
 const routes = require("express").Router();
-const authorization = require("../../middleware/registration/authorization.js");
+const authorization = require("../../middleware/authorization.js");
 var mysql = require("mysql");
-const display = require("../../model/ExpressTasks/EXP7_job_application/display.js");
-const insert = require("../../model/ExpressTasks/EXP7_job_application/insert.js");
-const update = require("../../model/ExpressTasks/EXP7_job_application/update.js");
+const display = require("../../controllers/ExpressTasks/EXP7_job_application/display.js");
+const insert = require("../../controllers/ExpressTasks/EXP7_job_application/insert.js");
+const update = require("../../controllers/ExpressTasks/EXP7_job_application/update.js");
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "job_app_6_3",
+  host: process.env.HOST,
+  user: process.env.USERS,
+  password: process.env.PASSWORDS,
+  database: process.env.DATABASE,
 });
 
 routes.get("/states", (req, res) => {

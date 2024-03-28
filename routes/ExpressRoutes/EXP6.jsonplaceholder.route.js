@@ -1,7 +1,7 @@
 const routes = require("express").Router();
-const authorization = require("../../middleware/registration/authorization.js");
+const authorization = require("../../middleware/authorization.js");
 
-const data = require("../../model/ExpressTasks/EXP2.attendence.js");
+const data = require("../../controllers/ExpressTasks/EXP2.attendence.js");
 
 routes.get("/post", authorization.authorization, (req, res) => {
   res.render("pages/ExpressTasks/EXP6_jsonplaceholder/index");
