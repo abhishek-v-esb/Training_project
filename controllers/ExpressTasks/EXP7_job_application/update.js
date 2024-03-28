@@ -210,25 +210,13 @@ exports.updateData = (req, res) => {
           if (err) throw err;
           const len = pagebody.boardname.length;
 
-          for (let i = 0; i < len; i++) {
-            let grad;
-            if (i == 0) {
-              grad = "ssc";
+          pagebody.boardname.forEach((element, index) => {
+            if (element) {
+              con.query(
+                `insert into education (employee_id ,education_type, board_name, passing_year, passing_percentage) values (${id},'${element}','${pagebody.boardname[index]}','${pagebody.passingyear[index]}',${pagebody.passingpercentage[index]});`
+              );
             }
-            if (i == 1) {
-              grad = "hsc";
-            }
-            if (i == 2) {
-              grad = "bachelor";
-            }
-            if (i == 3) {
-              grad = "master";
-            }
-
-            con.query(
-              `insert into education (employee_id ,education_type, board_name, passing_year, passing_percentage) values (${id},'${grad}','${pagebody.boardname[i]}','${pagebody.passingyear[i]}',${pagebody.passingpercentage[i]});`
-            );
-          }
+          });
           resolve(id);
         }
       );
@@ -240,17 +228,12 @@ exports.updateData = (req, res) => {
         `delete from  work_exp where employee_id=${id}`,
         function (err) {
           if (err) throw err;
-          const len = pagebody.company.length;
-          for (let i = 0; i < len; i++) {
+          pagebody.company.forEach((element, index) => {
+            console.log(element, index);
             con.query(
-              `insert into work_exp (employee_id ,company_name, work_designation, work_from, work_to) values (${id},'${pagebody.company[i]}','${pagebody.companydesignation[i]}','${pagebody.companyfrom[i]}','${pagebody.companyto[i]}');`,
-              function (err) {
-                if (err) {
-                  throw err;
-                }
-              }
+              `insert into work_exp (employee_id ,company_name, work_designation, work_from, work_to) values (${id},'${pagebody.company[index]}','${pagebody.companydesignation[index]}','${pagebody.companyfrom[index]}','${pagebody.companyto[index]}');`
             );
-          }
+          });
           resolve(id);
         }
       );
@@ -261,27 +244,28 @@ exports.updateData = (req, res) => {
     return new Promise((resolve) => {
       con.query(`delete from language where employee_id=${id}`, function (err) {
         if (err) throw err;
-        const langs = ["hindi", "english", "gujarati"];
-        langs.forEach((lang) => {
-          let temp = `${lang}_efficiency`;
-          let efficiency = "pagebody." + temp;
-          efficiency = `${eval(efficiency)}`.split(",");
-          // console.log(efficiency);
-          let eff_str = "";
-          efficiency.forEach((eff) => {
-            eff_str = eff_str + eff + ",";
-          });
-          con.query(
-            `insert into language (employee_id,language,fluency) values (${id},'${lang}','${eff_str.slice(
-              0,
-              -1
-            )}');`,
-            function (err) {
-              if (err) {
-                res.send("lang");
+        pagebody.language.forEach((element) => {
+          if (element) {
+            let temp = `${element}_efficiency`;
+            let efficiency = "pagebody." + temp;
+            efficiency = `${eval(efficiency)}`.split(",");
+
+            let eff_str = "";
+            efficiency.forEach((eff) => {
+              eff_str = eff_str + eff + ",";
+            });
+            con.query(
+              `insert into language (employee_id,language,fluency) values (${id},'${element}','${eff_str.slice(
+                0,
+                -1
+              )}');`,
+              function (err) {
+                if (err) {
+                  res.send("Form Not Submitted");
+                }
               }
-            }
-          );
+            );
+          }
         });
         resolve(id);
       });
@@ -295,22 +279,26 @@ exports.updateData = (req, res) => {
         function (err) {
           if (err) throw err;
           const name = ["php", "MySql", "oracle", "laravel"];
-          name.forEach((element) => {
-            const tech_name = `${element}[0]`;
-            const expertise = `${element}[1]`;
+          console.log(Object.keys(pagebody).toString().includes("laravel"));
 
-            let newTech = "pagebody." + tech_name;
-            newTech = `${eval(newTech)}`.split(",");
-            let newExpertise = "pagebody." + expertise;
-            newExpertise = `${eval(newExpertise)}`.split(",");
-            con.query(
-              `insert into technology (  employee_id, tech_name, tech_expertise) values (${id},'${newTech}','${newExpertise}');`,
-              function (err) {
-                if (err) {
-                  res.send("tech");
+          name.forEach((element) => {
+            if (Object.keys(pagebody).toString().includes(`${element}`)) {
+              const tech_name = `${element}[0]`;
+              const expertise = `${element}[1]`;
+
+              let newTech = "pagebody." + tech_name;
+              newTech = `${eval(newTech)}`.split(",");
+              let newExpertise = "pagebody." + expertise;
+              newExpertise = `${eval(newExpertise)}`.split(",");
+              con.query(
+                `insert into technology (  employee_id, tech_name, tech_expertise) values (${id},'${newTech}','${newExpertise}');`,
+                function (err) {
+                  if (err) {
+                    res.send("Form Not Submitted");
+                  }
                 }
-              }
-            );
+              );
+            }
           });
           resolve(id);
         }
@@ -324,12 +312,13 @@ exports.updateData = (req, res) => {
         `delete from reference_contact where employee_id=${id}`,
         function (err) {
           if (err) throw err;
-          const len = pagebody.ref.length;
-          for (let i = 0; i < len; i++) {
-            con.query(
-              `insert into reference_contact (employee_id ,ref_name, ref_contact, ref_relation) values (${id},'${pagebody.ref[i]}','${pagebody.refcontact[i]}','${pagebody.refrelation[i]}');`
-            );
-          }
+          pagebody.ref.forEach((element, index) => {
+            if (pagebody.refcontact[index] && pagebody.refrelation[index]) {
+              con.query(
+                `insert into reference_contact (employee_id ,ref_name, ref_contact, ref_relation) values (${id},'${pagebody.ref[index]}','${pagebody.refcontact[index]}','${pagebody.refrelation[index]}');`
+              );
+            }
+          });
           resolve(id);
         }
       );

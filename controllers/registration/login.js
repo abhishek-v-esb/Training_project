@@ -33,7 +33,7 @@ exports.loginUser = (req, res) => {
                 email: pagebody.loginEmail,
               };
               const token = jwt.sign(user, process.env.SECRET_TOKEN, {
-                expiresIn: "1800s",
+                expiresIn: "10hr",
               });
 
               res
