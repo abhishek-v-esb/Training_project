@@ -1,0 +1,33 @@
+.container {
+  height: 100vh;
+}
+
+#time {
+  display: flex;
+  align-items: center;
+}
+
+.time-div {
+  margin: 20px auto;
+}
+
+.inputs,
+option {
+  height: 45px;
+  font-size: large;
+  padding: 10px;
+}
+
+select {
+  background-color: #00d070;
+}
+button {
+  background-color: #00a1ed;
+  width: 100px;
+}
+select,
+button {
+  color: white;
+  border: none;
+  border-radius: 5px;
+}

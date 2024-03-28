@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timezone Converter</title>
+    <link rel="stylesheet" href="/style/ExpressTasks/EXP8_timezone.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="time">
+        <div class="time-div">
+          <label for="currTime" class="inputs">Enter Time</label>
+          <input
+            id="currTime"
+            type="datetime-local"
+            name="currTime"
+            step="2"
+            class="inputs"
+          />
+        </div>
+
+        <div class="time-div">
+          <select
+            name="cityTime"
+            id="cityTime"
+            onchange="cityTime(this.value)"
+            class="inputs"
+          ></select>
+          <button type="button" onclick="utcTime()" class="inputs">UTC</button>
+        </div>
+
+        <div class="time-div">
+          <label for="conTime" class="inputs">Converted Time</label>
+          <input id="conTime" type="text" name="conTime" class="inputs" />
+        </div>
+      </div>
+    </div>
+    <script src="/script/EXP8_timezone.js"></script>
+  </body>
+</html>

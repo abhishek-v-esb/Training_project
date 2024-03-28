@@ -19,20 +19,3 @@ exports.authorization = (req, res, next) => {
     }
   }
 };
-
-// exports.authentication = (req, res, next) => {
-//   const token = req.cookies.access_token;
-
-//   if (!token) {
-//     next();
-//   } else {
-//     try {
-//       const data = jwt.verify(token, process.env.SECRET_TOKEN);
-//       req.email = data.email;
-
-//       res.redirect("/authorised");
-//     } catch {
-//       return res.sendStatus(403);
-//     }
-//   }
-// };

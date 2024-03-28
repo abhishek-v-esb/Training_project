@@ -24,7 +24,7 @@ routes.get("/forgot", (req, res) => {
 });
 routes.post("/forgot", forgotPass.forgotPass);
 
-routes.get("/projects", (req, res) => {
+routes.get("/projects", authorization.authorization, (req, res) => {
   res.render("pages/registration/projects");
 });
 
