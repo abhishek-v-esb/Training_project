@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data</title>
+    <link
+      rel="stylesheet"
+      href="/style/ExpressTasks/EXP7_job_application.css"
+    />
+  </head>
+  <body>
+    <div class="data-tab">
+      <div id="data-details">
+        <table id="data">
+          <tr>
+            <th class="data-th head-td">First Name</th>
+            <th class="data-th">Last Name</th>
+            <th class="data-th">Date Of Birth</th>
+          </tr>
+          <%result.forEach((element) => {%>
+          <tr class="data-tr" id="<%=element.id%>">
+            <td class="data-td head-td"><%=element.first_name%></td>
+            <td class="data-td head-td"><%=element.last_name%></td>
+            <td class="data-td head-td"><%=element.dob%></td>
+            <td class="data-td head-td">
+              <a href="http://localhost:8007/EXP7/updateform?id=<%=element.id%>"
+                >Update
+              </a>
+            </td>
+          </tr>
+          <%});%>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

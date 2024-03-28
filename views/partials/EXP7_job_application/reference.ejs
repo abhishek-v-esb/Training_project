@@ -1,0 +1,54 @@
+<div id="referenceContact" style="display: none">
+  <%let refCount= 0%>
+  <fieldset>
+    <legend>
+      <h3>Reference Contacts</h3>
+    </legend>
+    <div class="refcontacts">
+      <table id="refTable">
+        <tr id="ref1">
+          <td><label for="ref">Name:</label></td>
+          <td>
+            <input type="text" name="ref" id="1" onkeyup="enableRef(this)" />
+            <span class="error"><p id="1_error"></p></span>
+          </td>
+
+          <td><label for="refcontact">Contact:</label></td>
+          <td>
+            <input type="text" name="refcontact" id="ref1contact" disabled />
+            <span class="error"><p id="ref1contact_error"></p></span>
+          </td>
+          <td><label for="refrelation">Relation:</label></td>
+          <td>
+            <input type="text" name="refrelation" id="ref1relation" disabled />
+            <span class="error"><p id="ref1relation_error"></p></span>
+          </td>
+        </tr>
+        <tr id="ref2">
+          <td><label for="ref">Name:</label></td>
+          <td>
+            <input type="text" name="ref" id="2" onkeyup="enableRef(this)" />
+            <span class="error"><p id="2_error"></p></span>
+          </td>
+
+          <td><label for="refcontact">Contact:</label></td>
+          <td>
+            <input type="text" name="refcontact" id="ref2contact" disabled />
+            <span class="error"><p id="ref2contact_error"></p></span>
+          </td>
+          <td><label for="refrelation">Relation:</label></td>
+          <td>
+            <input type="text" name="refrelation" id="ref2relation" disabled />
+            <span class="error"><p id="ref2relation_error"></p></span>
+          </td>
+        </tr>
+      </table>
+      <div>
+        <button onclick="addRefRow()" type="button">+</button>
+        <button onclick="removeRefRow()" type="button">-</button>
+      </div>
+    </div>
+
+    <br />
+  </fieldset>
+</div>

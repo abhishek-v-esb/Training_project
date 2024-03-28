@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+#data,
+.data-tr,
+.data-td,
+.data-th {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.data-td,
+.data-th {
+  padding: 10px;
+}
+.data-tab {
+  display: flex;
+  justify-content: center;
+}
+#header_table {
+  table-layout: fixed;
+  width: 100%;
+}
+.head-td {
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+.head-td:hover {
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.redstar {
+  color: red;
+  font-size: small;
+}
+
+.company {
+  display: flex;
+  justify-content: space-between;
+}
+.refcontacts {
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  height: 30px;
+  width: 30px;
+}
+p {
+  margin: 0 auto;
+  font-size: small;
+  color: red;
+}
+
+.selected-head {
+  background-color: #323ff3;
+  color: white;
+}
+.nav-btns {
+  position: fixed;
+  bottom: 50px;
+  width: 78%;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 50px;
+  width: 100px;
+  background-color: skyblue;
+  border: 1px solid black;
+  border-radius: 5%;
+  font-size: medium;
+}
+.nav-btn:hover {
+  cursor: pointer;
+}

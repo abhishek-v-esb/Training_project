@@ -1,0 +1,162 @@
+<div id="basic-details">
+  <fieldset>
+    <legend>
+      <h3><em>Basic details</em></h3>
+    </legend>
+    <table>
+      <tr>
+        <td>
+          <label for="firstname">First Name:</label>
+        </td>
+        <td>
+          <input
+            type="text"
+            id="firstname"
+            tabindex="1"
+            name="firstname"
+            autofocus
+          />
+
+          <span class="error"><p id="firstname_error"></p></span>
+        </td>
+        <td>
+          <label for="lastname">Last Name:</label>
+        </td>
+        <td>
+          <input type="text" id="lastname" tabindex="2" name="lastname" />
+
+          <span class="error"><p id="lastname_error"></p></span>
+        </td>
+        <td>
+          <label for="designation">Designation:</label>
+        </td>
+        <td>
+          <input type="text" id="designation" tabindex="3" name="designation" />
+
+          <span class="error"><p id="designation_error"></p></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="address1">Address 1:</label>
+        </td>
+        <td>
+          <textarea
+            rows="5"
+            cols="50"
+            id="address1"
+            name="address1"
+            tabindex="4"
+          ></textarea>
+
+          <span class="error"><p id="address1_error"></p></span>
+        </td>
+        <td>
+          <label for="address2">Address 2:</label>
+        </td>
+        <td>
+          <textarea
+            rows="5"
+            cols="50"
+            id="address2"
+            name="address2"
+            tabindex="5"
+          ></textarea>
+
+          <span class="error"><p id="address2_error"></p></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="email">Email:</label>
+        </td>
+        <td>
+          <input
+            type="text"
+            tabindex="6"
+            id="email"
+            placeholder="xyz@email.com"
+            name="email"
+          />
+
+          <span class="error"><p id="email_error"></p></span>
+        </td>
+        <td>
+          <label for="phone">Phone:</label>
+        </td>
+        <td>
+          <input
+            type="text"
+            tabindex="7"
+            id="phone"
+            placeholder="0000000000"
+            maxlength="14"
+            name="phone"
+          />
+
+          <span class="error"><p id="phone_error"></p></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="state">State:</label>
+        </td>
+        <td>
+          <select name="states" id="states" onchange="selectedState(this)">
+            <option>--Select State--</option>
+          </select>
+          <span class="error"><p id="state_error"></p></span>
+        </td>
+        <td>
+          <label for="city">City:</label>
+        </td>
+        <td>
+          <select name="cities" id="cities">
+            <option>--Select City--</option>
+          </select>
+          <span class="error"><p id="city_error"></p></span>
+        </td>
+        <td>
+          <label for="zipcode">Zip code:</label>
+        </td>
+        <td>
+          <input type="text" id="zipcode" tabindex="10" name="zipcode" />
+
+          <span class="error"><p id="zipcode_error"></p></span>
+        </td>
+      </tr>
+      <td>
+        <label for="dob">Date of birth:</label>
+      </td>
+      <td>
+        <input
+          tabindex="13"
+          type="date"
+          name="dob"
+          id="dob"
+          placeholder="dd-mm-yyyy"
+        />
+
+        <span class="error"><p id="dob_error"></p></span>
+      </td>
+      <tr>
+        <td>
+          <label for="gender">Gender:</label>
+        </td>
+        <td>
+          <input type="radio" id="male" value="male" name="gender" />
+          <label for="male">Male</label><br />
+          <input type="radio" id="female" value="female" name="gender" />
+          <label for="female">Female</label><br />
+        </td>
+        <td><label>Relationship status:</label></td>
+        <td>
+          <select name="relationship" id="relationship">
+            <option id="single" value="single">Single</option>
+            <option id="married" value="married">Married</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+</div>

@@ -1,0 +1,107 @@
+<div id="workExp" style="display: none">
+  <%let compCount = 0%>
+  <fieldset>
+    <legend>
+      <h3><i>Work experience</i></h3>
+    </legend>
+
+    <div class="company">
+      <table id="compTable">
+        <tr id="comp1">
+          <td><label for="company">Company:</label></td>
+          <td>
+            <input
+              type="text"
+              name="company"
+              id="company1"
+              onkeyup="enableComp(this)"
+            />
+            <span class="error"><p id="company1_error"></p></span>
+          </td>
+          <td><label for="companydesignation">Designation:</label></td>
+          <td>
+            <input
+              type="text"
+              name="companydesignation"
+              id="company1designation"
+              disabled
+            />
+            <span class="error"><p id="company1designation_error"></p></span>
+          </td>
+          <td><label for="companyfrom">From:</label></td>
+
+          <td>
+            <input
+              type="date"
+              name="companyfrom"
+              id="company1from"
+              placeholder="dd-mm-yyyy"
+              disabled
+            />
+            <span class="error"><p id="company1from_error"></p></span>
+          </td>
+          <td><label for="companyto">To:</label></td>
+          <td>
+            <input
+              type="date"
+              name="companyto"
+              id="company1to"
+              placeholder="dd-mm-yyyy"
+              disabled
+            />
+            <span class="error"><p id="company1to_error"></p></span>
+          </td>
+        </tr>
+        <tr id="comp2">
+          <td><label for="company">Company:</label></td>
+          <td>
+            <input
+              type="text"
+              name="company"
+              id="company2"
+              onkeyup="enableComp(this)"
+            />
+            <span class="error"><p id="company2_error"></p></span>
+          </td>
+          <td><label for="companydesignation">Designation:</label></td>
+          <td>
+            <input
+              type="text"
+              name="companydesignation"
+              id="company2designation"
+              disabled
+            />
+            <span class="error"><p id="company2designation_error"></p></span>
+          </td>
+          <td><label for="companyfrom">From:</label></td>
+
+          <td>
+            <input
+              type="date"
+              name="companyfrom"
+              id="company2from"
+              placeholder="dd-mm-yyyy"
+              disabled
+            />
+            <span class="error"><p id="company2from_error"></p></span>
+          </td>
+          <td><label for="companyto">To:</label></td>
+          <td>
+            <input
+              type="date"
+              name="companyto"
+              id="company2to"
+              placeholder="dd-mm-yyyy"
+              disabled
+            />
+            <span class="error"><p id="company2to_error"></p></span>
+          </td>
+        </tr>
+      </table>
+      <div>
+        <button onclick="addCompRow()" type="button">+</button>
+        <button onclick="removeCompRow()" type="button">-</button>
+      </div>
+    </div>
+  </fieldset>
+</div>

@@ -1,0 +1,138 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link
+      rel="stylesheet"
+      href="/style/ExpressTasks/EXP7_job_application.css"
+    />
+  </head>
+  <body onload="showPage(1);">
+    <%let refCount= 0%>
+    <h3>
+      <center><u>Job Application</u></center>
+    </h3>
+    <input hidden type="text" name="hiddenid" id="hiddenId" value="<%=id%>" />
+    <section id="header_sec">
+      <div class="container">
+        <div id="header_div">
+          <table id="header_table">
+            <tr>
+              <td
+                onclick="headerClick(this)"
+                class="head-td"
+                id="basic-details_head"
+              >
+                Basic Details
+              </td>
+              <td
+                onclick="headerClick(this)"
+                class="head-td"
+                id="education_head"
+              >
+                Education
+              </td>
+              <td onclick="headerClick(this)" class="head-td" id="workExp_head">
+                Work Experience
+              </td>
+              <td
+                onclick="headerClick(this)"
+                class="head-td"
+                id="language_head"
+              >
+                Language
+              </td>
+              <td
+                onclick="headerClick(this)"
+                class="head-td"
+                id="technology_head"
+              >
+                Technology
+              </td>
+              <td
+                onclick="headerClick(this)"
+                class="head-td"
+                id="referenceContact_head"
+              >
+                References
+              </td>
+              <td
+                onclick="headerClick(this)"
+                class="head-td"
+                id="preference_head"
+              >
+                Preferences
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section id="formSec">
+      <div class="container">
+        <form id="form" method="POST">
+          <input
+            hidden
+            type="text"
+            name="hiddenid"
+            id="hiddenId"
+            value="<%=id%>"
+          />
+          <div class="active">
+            <%- include('../../../partials/EXP7_job_application/basic_details');
+            %>
+          </div>
+          <div class="active">
+            <%- include('../../../partials/EXP7_job_application/education'); %>
+          </div>
+          <div class="active">
+            <%- include('../../../partials/EXP7_job_application/work_exp'); %>
+          </div>
+          <div class="active">
+            <%- include('../../../partials/EXP7_job_application/language'); %>
+          </div>
+          <div class="active">
+            <%- include('../../../partials/EXP7_job_application/technology'); %>
+          </div>
+          <div class="active">
+            <%- include('../../../partials/EXP7_job_application/reference'); %>
+          </div>
+          <div class="active">
+            <%- include('../../../partials/EXP7_job_application/preference'); %>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section id="nav">
+      <div class="container">
+        <div class="nav-btns" id="nav-div">
+          <div id="prev" class="nav-btn" onclick="previous()">Previous</div>
+          <div id="next" class="nav-btn" onclick="next()">Next</div>
+          <%if(!id){%>
+          <input
+            id="submit"
+            type="submit"
+            form="form"
+            class="nav-btn"
+            value="Submit"
+            formaction="/EXP7/insert"
+          />
+          <%}else{%>
+          <input
+            id="submit"
+            type="submit"
+            form="form"
+            class="nav-btn"
+            value="Update"
+            formaction="/EXP7/update"
+          />
+          <%}%>
+        </div>
+      </div>
+    </section>
+    <footer><center>Abhishek Verma</center></footer>
+
+    <script src="/script/EXP7_job.js"></script>
+  </body>
+</html>

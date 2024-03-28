@@ -14,6 +14,7 @@ const EXP3 = require("./routes/ExpressRoutes/EXP3.query.search.route.js");
 const EXP4 = require("./routes/ExpressRoutes/EXP4.multiple.search.route.js");
 const EXP5 = require("./routes/ExpressRoutes/EXP5.delimeter.search.route.js");
 const EXP6 = require("./routes/ExpressRoutes/EXP6.jsonplaceholder.route.js");
+const EXP7 = require("./routes/ExpressRoutes/EXP7.job.application.route.js");
 
 app.set("view engine", "ejs");
 
@@ -31,6 +32,7 @@ app.use("/EXP3", EXP3);
 app.use("/EXP4", EXP4);
 app.use("/EXP5", EXP5);
 app.use("/EXP6", EXP6);
+app.use("/EXP7", EXP7);
 
 app.listen(port, () => {
   console.log(`server listening at ${port}`);
