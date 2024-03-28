@@ -1,0 +1,59 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="/style/ExpressTasks/EXP5_delimeter_search.css"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <div class="holder">
+        <div id="form1" class="form">
+          <center><h3>Abhishek Verma</h3></center>
+          <form class="formdiv" action="/EXP5/delimeter" method="POST">
+            <input
+              class="input"
+              type="text"
+              name="input"
+              tabindex="1"
+              value="<%=body%>"
+              autofocus
+            />
+            <input class="submit" type="submit" value="GO!" />
+          </form>
+          <div class="formdiv">
+            <pre>_FirstName   $LastName   {Email   }City   :Semester</pre>
+          </div>
+        </div>
+
+        <%try {%>
+        <div class="table">
+          <table border="1">
+            <tr>
+              <%cols.forEach((col)=>{%>
+              <th>
+                <div><%=col%></div>
+              </th>
+              <%});%>
+            </tr>
+
+            <%result.forEach((element) => {%>
+            <tr>
+              <%for (let i = 0; i < cols.length; i++) {%>
+              <td><%=Object.values(element)[i]%></td>
+              <%}%>
+            </tr>
+            <%});%>
+          </table>
+        </div>
+
+        <%} catch (error) {%>
+        <center><h2 style="color: red">Data Not Found</h2></center>
+        <%}%>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+#container {
+  display: flex;
+  justify-content: center;
+}
+#holder {
+  display: flex;
+  flex-direction: column;
+}
+#selecter {
+  display: flex;
+  justify-content: center;
+}
+
+table,
+td,
+th {
+  margin: 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td {
+  padding: 10px;
+}
+th {
+  background-color: #323333;
+  color: white;
+  padding: 10px;
+}
+h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+p {
+  font-size: medium;
+}
+.container {
+  display: flex;
+  justify-content: left;
+}
+.navigation {
+  display: flex;
+}
+.submit {
+  background-color: lightgreen;
+  border: none;
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+}
+#view {
+  margin: 20px;
+
+  border: none;
+  height: 30px;
+  width: 100px;
+  background-color: lightskyblue;
+  font-size: large;
+}
+#viewDiv {
+  display: flex;
+  justify-content: center;
+}
+#upper {
+  display: flex;
+  justify-content: space-between;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.formdiv {
+  display: flex;
+  justify-content: center;
+}
+#form1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.count {
+  padding: 0 10px;
+}
+.input {
+  margin: 10px;
+  width: 700px;
+  height: 45px;
+  font-size: large;
+}
+.fields {
+  display: flex;
+
+  flex-direction: column;
+  text-align: center;
+}
+#moreBlock {
+  visibility: hidden;
+}
+button {
+  margin: 0 10px;
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: blue;
+}
+
+a:active {
+  color: black;
+}
+a {
+  text-decoration: none;
+}
+form {
+  display: flex;
+  align-items: center;
+}
