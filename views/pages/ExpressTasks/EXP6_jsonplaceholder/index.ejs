@@ -1,0 +1,148 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="/style/ExpressTasks/EXP6_jsonplaceholder.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div id="searchHolder">
+        <div id="searchDiv">
+          <input type="text" name="search" id="search" autofocus />
+          <button id="go" onclick="getPostData(pageNum)">GO!</button>
+        </div>
+      </div>
+      <div id="navHolder">
+        <div id="navDiv">
+          <button id="dec" onclick="decPage()">&#9664;</button>
+          <div id="page">1</div>
+          <button id="inc" onclick="incPage()">&#9654;</button>
+        </div>
+      </div>
+      <div id="tablediv">
+        <table id="table" border="1">
+          <tr>
+            <th>User Id</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Body</th>
+          </tr>
+          <tr class="hovered"></tr>
+        </table>
+      </div>
+    </div>
+    <script>
+      let dataLen;
+      const dec = document.getElementById("dec");
+      const inc = document.getElementById("inc");
+      const table = document.getElementById("table");
+      const url = "https://jsonplaceholder.typicode.com/posts";
+      const records = 10;
+      const page = document.getElementById("page");
+      let pageNum = parseInt(page.innerHTML);
+
+      getPostData(pageNum, records);
+      async function getPostData(pageNum) {
+        const searchText = document.getElementById("search").value;
+
+        const response = await fetch(url);
+
+        const posts = await response.json();
+
+        let filteredData = posts.filter((post) => {
+          if (JSON.stringify(post).includes(searchText)) {
+            return post;
+          }
+        });
+
+        dataLen = filteredData.length;
+        // console.log(filterData);
+        const result = await addData(filteredData, pageNum);
+      }
+
+      function addData(posts, pageNum) {
+        return new Promise((resolve) => {
+          let trs = Array.from(document.getElementsByClassName("hovered"));
+
+          const tableData = posts.slice(
+            pageNum * records - records,
+            pageNum * records
+          );
+
+          // console.log(trs);
+          trs.forEach((element) => {
+            element.parentNode.removeChild(element);
+          });
+
+          // console.log(posts, page);
+          tableData.forEach((element) => {
+            let tr = document.createElement("tr");
+            tr.onclick = redirect;
+            tr.classList.add("hovered");
+
+            let userId = document.createElement("td");
+            let id = document.createElement("td");
+            let title = document.createElement("td");
+            let body = document.createElement("td");
+
+            userId.innerHTML = element.userId;
+            id.innerHTML = element.id;
+            id.id = element.id;
+            title.innerHTML = element.title;
+            body.innerHTML = element.body;
+
+            userId.classList.add(element.id);
+            id.classList.add(element.id);
+            title.classList.add(element.id);
+            body.classList.add(element.id);
+            tr.id = element.id;
+            tr.userId = element.userId;
+
+            tr.appendChild(userId);
+            tr.appendChild(id);
+            tr.appendChild(title);
+            tr.appendChild(body);
+            table.appendChild(tr);
+          });
+        });
+      }
+      function redirect() {
+        const redirectUrl = `/EXP6/postdetails?id=${this.id}&userid=${this.userId}`;
+        window.open(redirectUrl);
+      }
+      btnActive(page);
+      function incPage() {
+        const endPage = Math.ceil(dataLen / records);
+        pageNum = parseInt(page.innerHTML);
+        if (pageNum < endPage) {
+          page.innerHTML = pageNum + 1;
+        }
+        getPostData(pageNum + 1);
+        btnActive(page, dataLen, records);
+      }
+      function decPage() {
+        pageNum = parseInt(page.innerHTML);
+        if (pageNum > 1) {
+          page.innerHTML = pageNum - 1;
+        }
+        getPostData(pageNum - 1);
+        btnActive(page, dataLen, records);
+      }
+
+      function btnActive(page, dataLen, records) {
+        if (page.innerHTML == 1) {
+          dec.disabled = true;
+        } else if (page.innerHTML == Math.ceil(dataLen / records)) {
+          inc.disabled = true;
+        } else {
+          inc.disabled = false;
+          dec.disabled = false;
+        }
+      }
+    </script>
+  </body>
+</html>

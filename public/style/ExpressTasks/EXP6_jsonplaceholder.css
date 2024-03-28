@@ -1,0 +1,72 @@
+.container {
+  margin: 100px;
+}
+#navHolder {
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+}
+#navDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#searchiv {
+  display: flex;
+  justify-content: center;
+}
+#searchHolder {
+  display: flex;
+  justify-content: center;
+}
+#tablediv {
+  display: flex;
+  justify-content: center;
+}
+table {
+  border: 1px dolid black;
+  border-collapse: collapse;
+  background-color: #f6f5ff;
+}
+th {
+  background-color: black;
+  color: white;
+}
+td,
+th {
+  padding: 10px;
+}
+
+tr:hover {
+  background-color: #f4edff;
+}
+
+button {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+}
+#search {
+  height: 45px;
+  width: 300px;
+  font-size: medium;
+}
+
+#go {
+  background-color: lightgreen;
+  border: none;
+  width: 50px;
+  height: 50px;
+  font-size: medium;
+  margin: 10px;
+}
+
+#btn {
+  width: 100px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  font-size: medium;
+  color: black;
+  background-color: aquamarine;
+}
