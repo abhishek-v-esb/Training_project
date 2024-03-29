@@ -4,15 +4,14 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "job_app_6_3",
+  host: process.env.HOST,
+  user: process.env.USERS,
+  password: process.env.PASSWORDS,
+  database: process.env.DATABASE,
 });
 
 exports.insertData = (req, res) => {
   const pagebody = req.body;
-  // console.log(pagebody);
 
   runQueries();
 
@@ -38,7 +37,7 @@ exports.insertData = (req, res) => {
       for (let i = 1; i < 14; i++) {
         values.push(Object.values(pagebody)[i]);
       }
-      // console.log(values);
+
       const sql =
         "insert into employee (first_name,last_name,emp_designation,address1,address2,email,phone,city,state,zip_code,dob,gender,relationship_status) values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
@@ -46,7 +45,7 @@ exports.insertData = (req, res) => {
         if (err) {
           throw err;
         }
-        // console.log(result.insertId);
+
         resolve(result.insertId);
       });
     });
@@ -69,7 +68,6 @@ exports.insertData = (req, res) => {
   function work_exp(id) {
     return new Promise((resolve) => {
       pagebody.company.forEach((element, index) => {
-        console.log(element, index);
         con.query(
           `insert into work_exp (employee_id ,company_name, work_designation, work_from, work_to) values (${id},'${pagebody.company[index]}','${pagebody.companydesignation[index]}','${pagebody.companyfrom[index]}','${pagebody.companyto[index]}');`
         );
@@ -86,7 +84,7 @@ exports.insertData = (req, res) => {
           let temp = `${element}_efficiency`;
           let efficiency = "pagebody." + temp;
           efficiency = `${eval(efficiency)}`.split(",");
-          // console.log(efficiency);
+
           let eff_str = "";
           efficiency.forEach((eff) => {
             eff_str = eff_str + eff + ",";
@@ -112,7 +110,6 @@ exports.insertData = (req, res) => {
   function technology(id) {
     return new Promise((resolve) => {
       const name = ["php", "MySql", "oracle", "laravel"];
-      console.log(Object.keys(pagebody).toString().includes("laravel"));
 
       name.forEach((element) => {
         if (Object.keys(pagebody).toString().includes(`${element}`)) {

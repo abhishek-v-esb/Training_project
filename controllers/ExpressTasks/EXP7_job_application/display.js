@@ -4,10 +4,10 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "job_app_6_3",
+  host: process.env.HOST,
+  user: process.env.USERS,
+  password: process.env.PASSWORDS,
+  database: process.env.DATABASE,
 });
 
 exports.displayData = (req, res) => {

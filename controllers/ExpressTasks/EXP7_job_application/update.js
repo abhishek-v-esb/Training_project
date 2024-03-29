@@ -5,16 +5,15 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "job_app_6_3",
+  host: process.env.HOST,
+  user: process.env.USERS,
+  password: process.env.PASSWORDS,
+  database: process.env.DATABASE,
 });
 
 exports.existingData = (req, res) => {
   const id = req.query.id;
 
-  // console.log(id);
   let data = {};
 
   run();
@@ -26,19 +25,18 @@ exports.existingData = (req, res) => {
     data.technology = await technology();
     data.reference = await reference_contact();
     data.preference = await preference();
-    // console.log(data);
+
     await res.send(data);
   }
 
   // employee(id);
   function employee() {
-    // console.log(id);
     return new Promise((resolve) => {
       con.query(
         `select *,DATE_FORMAT(dob,'%Y-%m-%d') as dob from employee where id=${id}`,
         function (err, result) {
           if (err) throw err;
-          // console.log(result);
+
           resolve(result[0]);
         }
       );
@@ -57,7 +55,7 @@ exports.existingData = (req, res) => {
             const key = element.education_type;
             newResult[`${key}`] = element;
           });
-          //   console.log(newResult);
+
           resolve(newResult);
         }
       );
@@ -98,7 +96,7 @@ exports.existingData = (req, res) => {
             const key = element.language;
             newResult[`${key}`] = element;
           });
-          //   console.log(newResult);
+
           resolve(newResult);
         }
       );
@@ -116,7 +114,7 @@ exports.existingData = (req, res) => {
             const key = element.tech_name;
             newResult[`${key}`] = element;
           });
-          //   console.log(newResult);
+
           resolve(newResult);
         }
       );
@@ -136,7 +134,6 @@ exports.existingData = (req, res) => {
             result.forEach((element) => {
               const key = `ref${i}`;
               newResult[`${key}`] = element;
-              // console.log(newResult);
             });
           }
           resolve(newResult);
@@ -152,7 +149,6 @@ exports.existingData = (req, res) => {
         function (err, result) {
           if (err) throw err;
 
-          //   console.log(result);
           resolve(result[0]);
         }
       );
@@ -163,8 +159,6 @@ exports.existingData = (req, res) => {
 exports.updateData = (req, res) => {
   const pagebody = req.body;
   const id = pagebody.hiddenid;
-  // console.log(id);
-  // render.send("hello");
 
   update();
 
@@ -229,7 +223,6 @@ exports.updateData = (req, res) => {
         function (err) {
           if (err) throw err;
           pagebody.company.forEach((element, index) => {
-            console.log(element, index);
             con.query(
               `insert into work_exp (employee_id ,company_name, work_designation, work_from, work_to) values (${id},'${pagebody.company[index]}','${pagebody.companydesignation[index]}','${pagebody.companyfrom[index]}','${pagebody.companyto[index]}');`
             );
@@ -279,7 +272,6 @@ exports.updateData = (req, res) => {
         function (err) {
           if (err) throw err;
           const name = ["php", "MySql", "oracle", "laravel"];
-          console.log(Object.keys(pagebody).toString().includes("laravel"));
 
           name.forEach((element) => {
             if (Object.keys(pagebody).toString().includes(`${element}`)) {

@@ -1,6 +1,6 @@
 let count = 1;
 const form = document.querySelector("#form");
-// console.log(form);
+
 const page = {
   1: "basic-details",
   2: "education",
@@ -20,71 +20,10 @@ const required = [
   "email",
   "phone",
   "zipcode",
-  "ssc",
-  "passingyearssc",
-  "passingpercentagessc",
-  "hsc",
-  "passingyearhsc",
-  "passingpercentagehsc",
-  "bachelor",
-  "passingyearbachelor",
-  "passingpercentagebachelor",
-  "master",
-  "passingyearmaster",
-  "passingpercentagemaster",
-  "company1",
-  "company1designation",
-  "company1from",
-  "company1to",
-  "company2",
-  "company2designation",
-  "company2from",
-  "company2to",
-  "ref1",
-  "ref1relation",
-  "ref1contact",
-  "ref2",
-  "ref2relation",
-  "ref2contact",
-  "prefLocation",
-  "currCTC",
-  "expCTC",
-  "department",
 ];
 
-const isNum = [
-  "phone",
-  "zipcode",
-  "passingpercentagessc",
-  "passingpercentagehsc",
-  "passingpercentagebachelor",
-  "passingpercentagemaster",
-  "ref1contact",
-  "ref2contact",
-  "currCTC",
-  "expCTC",
-];
-const isStr = [
-  "firstname",
-  "lastname",
-  "designation",
-  "city",
-  "state",
-  "ssc",
-  "hsc",
-  "bachelor",
-  "master",
-  "company1",
-  "company1designation",
-  "company2",
-  "company2designation",
-  "ref1",
-  "ref1relation",
-  "ref2",
-  "ref2relation",
-  "prefLocation",
-  "department",
-];
+const isNum = ["phone", "zipcode"];
+const isStr = ["firstname", "lastname", "designation"];
 const email = ["email"];
 const merge = (a, b, predicate = (a, b) => a === b) => {
   const c = [...a];
@@ -102,8 +41,9 @@ if (window.location.href.includes("updateform")) {
 
 function getExistingData() {
   var xhr = new XMLHttpRequest();
+  const id = document.getElementById("hiddenId").value;
 
-  xhr.open("GET", `http://localhost:8007/EXP7/update?id=1`, true);
+  xhr.open("GET", `http://localhost:8007/EXP7/update?id=${id}`, true);
 
   xhr.onload = function () {
     if (this.status == 200) {
@@ -199,22 +139,26 @@ function addetails(data) {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const xhr = new XMLHttpRequest();
+  const valid = validate();
 
-  if (event.target.action.includes("insert")) {
-    xhr.open("POST", "/EXP7/insert");
-  } else {
-    xhr.open("POST", "/EXP7/update");
+  if (valid) {
+    const xhr = new XMLHttpRequest();
+
+    if (event.target.action.includes("insert")) {
+      xhr.open("POST", "/EXP7/insert");
+    } else {
+      xhr.open("POST", "/EXP7/update");
+    }
+    let data = new FormData(form);
+
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.send(new URLSearchParams(data));
+
+    xhr.onload = () => {
+      window.location.href = "http://localhost:8007/EXP7/display";
+    };
   }
-  let data = new FormData(form);
-
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-  xhr.send(new URLSearchParams(data));
-
-  xhr.onload = () => {
-    window.location.href = "http://localhost:8007/EXP7/display";
-  };
 });
 
 function selectedState(e) {
@@ -223,14 +167,11 @@ function selectedState(e) {
   if (e == undefined) {
     type = "states";
     url = "http://localhost:8007/EXP7/states";
-
-    // console.log(url);
   } else {
     type = "cities";
     const select = document.getElementById(`${type}`);
-    // console.log(select.options);
+
     for (const each of select.options) {
-      // console.log(each);
       each.remove();
     }
 
@@ -246,9 +187,6 @@ function selectedState(e) {
 
       const select = document.getElementById(`${type}`);
 
-      // console.log(data);
-
-      // console.log(select);
       data.forEach((element) => {
         const option = document.createElement("option");
         option.value = element.name;
@@ -336,15 +274,18 @@ function validate() {
     const errorspan = document.getElementById(`${check}_error`);
     if (required.includes(check) && value == "") {
       errorspan.innerHTML = "please enter the field";
-      // errorspan.focus();
+
+      document.getElementById(check).focus();
       return false;
     }
     if (isNum.includes(check) && !value.match(/^[0-9]+$/)) {
       errorspan.innerHTML = "enter a number";
+      document.getElementById(check).focus();
       return false;
     }
     if (isStr.includes(check) && !value.match(/^[A-Za-z]+$/)) {
       errorspan.innerHTML = "enter a string";
+      document.getElementById(check).focus();
       return false;
     }
     if (
@@ -424,7 +365,7 @@ function addCompRow() {
   const tr = document.createElement("tr");
   const body = document.querySelector("#compTable tbody");
   const id = parseInt(body.lastElementChild.id);
-  console.log(id);
+
   tr.id = id + 1;
   tr.innerHTML = `<td><label for="company">Company:</label></td>
   <td>
@@ -486,7 +427,7 @@ function addRefRow() {
   const tr = document.createElement("tr");
   const body = document.querySelector("#refTable tbody");
   const id = parseInt(body.lastElementChild.id.slice(-1));
-  // console.log(id);
+
   const newId = `ref${id + 1}`;
   tr.id = `ref${id + 1}`;
   tr.innerHTML = `<td><label for="ref">Name:</label></td>
