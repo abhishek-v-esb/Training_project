@@ -46,15 +46,16 @@ button {
 }
 
 a:link {
-  color: blue;
+  color: white;
 }
 
 a:visited {
-  color: green;
+  color: white;
 }
 
 a:hover {
   color: red;
+  text-decoration: underline;
 }
 
 a:active {

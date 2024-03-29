@@ -4,24 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dynamic grid</title>
     <style>
-      table,
       td {
-        height: 20px;
-        width: 20px;
-        padding: 20px;
+        height: 50px;
+        width: 50px;
       }
-      div {
-        display: flex;
-      }
+
       table,
       tr,
       td {
         border: 1px solid black;
+        border-collapse: collapse;
       }
-      button {
-        height: 50px;
-        width: 50px;
-      }
+
       tr:nth-of-type(even) td:nth-of-type(even),
       tr:nth-of-type(odd) td:nth-of-type(odd) {
         background: turquoise;
@@ -32,28 +26,76 @@
         background: #e6e6fa;
       }
       footer {
-        text-align: center;
+        position: absolute;
+        bottom: 0;
+      }
+      #foot-div {
+        display: flex;
+        justify-content: center;
+      }
+      .col-btns,
+      .row-btns {
+        height: 50px;
+        width: 50px;
+        background-color: lightblue;
+        border: none;
+        margin: 10px;
+      }
+
+      #col-btn-div {
+        display: flex;
+        flex-direction: column;
+      }
+      #row-btn-div {
+        display: flex;
+
+        justify-content: center;
+      }
+      #hor-div {
+        display: flex;
+        height: 100vh;
+      }
+      #tableDiv {
+        margin: auto auto;
+        padding: 50px;
+      }
+      #col-btn {
+        display: flex;
+        align-items: center;
       }
     </style>
   </head>
   <body>
-    <div id="tableDiv">
-      <table id="tb">
-        <tr id="fr">
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-      </table>
-      <div><button onclick="addRow()">row+</button></div>
-      <div><button onclick="removeRow()">row-</button></div>
+    <div id="row-btn">
+      <div id="row-btn-div">
+        <button class="row-btns" onclick="addRow()">row+</button>
+        <button class="row-btns" onclick="removeRow()">row-</button>
+      </div>
     </div>
-    <div><button onclick="addCol()">col+</button></div>
-    <div><button onclick="removeCol()">col-</button></div>
-    <footer>Abhishek Verma 24DEV035 01/02/2024</footer>
+    <div id="hor-div">
+      <div id="col-btn">
+        <div id="col-btn-div">
+          <button class="col-btns" onclick="addCol()">col+</button>
+          <button class="col-btns" onclick="removeCol()">col-</button>
+        </div>
+      </div>
+      <div id="tableDiv">
+        <table id="tb">
+          <tr id="fr">
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="foot-div">
+      <footer>Abhishek Verma 24DEV035 01/02/2024</footer>
+    </div>
     <script>
       function addRow() {
         const table = document.querySelector("#tb");

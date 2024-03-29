@@ -164,33 +164,33 @@ form.addEventListener("submit", (event) => {
 function selectedState(e) {
   let type;
   let url;
+  const cityNode = document.getElementById("cities");
+
+  cityNode.replaceChildren();
+
   if (e == undefined) {
     type = "states";
+
     url = "http://localhost:8007/EXP7/states";
   } else {
     type = "cities";
-    const select = document.getElementById(`${type}`);
-
-    for (const each of select.options) {
-      each.remove();
-    }
 
     url = `http://localhost:8007/EXP7/cities?state=${e.selectedIndex}`;
   }
-  var xhr = new XMLHttpRequest();
 
+  var xhr = new XMLHttpRequest();
   xhr.onload = function () {
     if (this.status == 200) {
-      const id = document.getElementById("hiddenid");
-
       const data = JSON.parse(this.responseText);
-
       const select = document.getElementById(`${type}`);
 
       data.forEach((element) => {
         const option = document.createElement("option");
         option.value = element.name;
         option.innerHTML = element.name;
+        if (type == "cities") {
+          option.classList = "city-options";
+        }
         select.appendChild(option);
       });
     } else {

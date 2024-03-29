@@ -6,6 +6,7 @@
     <style>
       #controllers {
         display: flex;
+        justify-content: space-around;
       }
       #container {
         font-size: larger;
@@ -15,7 +16,6 @@
       }
       .controls {
         color: whitesmoke;
-        padding: 25px 180px;
         margin: 10px 80px;
         font-size: x-large;
         font-family: Verdana, sans-serif;
@@ -30,15 +30,12 @@
       }
       table {
         background-color: whitesmoke;
-        border-radius: 4px;
-        /* table-layout: fixed; */
+        border-radius: 10px;
         height: 500px;
         width: 500px;
       }
       td {
-        /* height: 40px;
-        width: 40px; */
-        border-radius: 10%;
+        border-radius: 10px;
       }
       body {
         background-color: tomato;
@@ -80,7 +77,9 @@
         </table>
       </div>
     </div>
-    <footer>Abhishek Verma 24DEV035 01/02/2024</footer>
+    <footer style="color: whitesmoke">
+      Abhishek Verma 24DEV035 01/02/2024
+    </footer>
     <script>
       let score = 0;
       let count = 10;
@@ -99,15 +98,15 @@
       }, 1000);
       function randomCell() {
         let table = document.querySelector("#table");
-        // console.log(table);
+
         let countTr = table.rows[0].childElementCount;
-        // console.log(countTr);
+
         const random1 = Math.floor(Math.random() * countTr);
         const random2 = Math.floor(Math.random() * countTr);
         console.log(random1);
         console.log(random2);
         let randCell = table.rows[random1].cells[random2];
-        // randCell.id = "randCell";
+
         console.log(randCell);
         randCell.addEventListener("click", start);
         randCell.style.opacity = "0.5";
@@ -129,9 +128,7 @@
         let table = document.querySelectorAll("#table")[0];
         let trs = document.querySelectorAll("#firstRow")[0];
         let countTr = trs.childElementCount;
-        // console.log(table);
-        // console.log(trs);
-        // console.log(countTr);
+
         if (countTr < 10) {
           let tr = document.createElement("tr");
           for (let index = 0; index < countTr; index++) {
@@ -144,9 +141,9 @@
 
       function addCol() {
         let trs = document.querySelectorAll("#table tr");
-        // console.log(table);
+
         let countTr = trs[0].childElementCount;
-        // console.log(countTr);
+
         if (countTr < 10) {
           for (tr of trs) {
             let td = document.createElement("td");
@@ -157,14 +154,11 @@
 
       function randomColor() {
         let randColor = "#" + Math.random().toString(16).slice(-6);
-        // console.log(randColor);
+
         let tds = document.getElementsByTagName("td");
         for (let index = 0; index < tds.length; index++) {
           tds[index].style.backgroundColor = randColor;
-          // console.log(tds[index]);
         }
-        // let removeId = document.getElementById("randCell");
-        // removeId.removeAttribute("id");
       }
 
       function removeEvents() {

@@ -3,35 +3,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All data</title>
+    <link rel="stylesheet" href="/style/ExpressTasks/EXP1_grid.css" />
   </head>
   <body>
-    <table border="1">
-      <tr>
-        <th>Student ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Gender</th>
-        <th>Email</th>
-        <th>Date Of Birth</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Sem</th>
-        <th>Entry Time</th>
-      </tr>
-      <%result.forEach(function (element) {%>
-      <tr>
-        <td><%= element.std_id%></td>
-        <td><%= element.std_fname%></td>
-        <td><%= element.std_lname%></td>
-        <td><%= element.gender%></td>
-        <td><%= element.email%></td>
-        <td><%= element.dob.toLocaleDateString();%></td>
-        <td><%= element.city%></td>
-        <td><%= element.country%></td>
-        <td><%= element.sem%></td>
-        <td><%= element.entry_time%></td>
-      </tr>
-      <% }); %>
-    </table>
+    <div class="container">
+      <table id="grid-table">
+        <tr>
+          <th>Student ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Email</th>
+          <th>Date Of Birth</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Sem</th>
+          <th>Entry Time</th>
+        </tr>
+        <%result.forEach(function (element) {%>
+        <tr>
+          <td><%= element.std_id%></td>
+          <td><%= element.std_fname%></td>
+          <td><%= element.std_lname%></td>
+          <td><%= element.gender%></td>
+          <td><%= element.email%></td>
+          <td><%= element.dob.toLocaleDateString();%></td>
+          <td><%= element.city%></td>
+          <td><%= element.country%></td>
+          <td><%= element.sem%></td>
+          <td><%= element.entry_time%></td>
+        </tr>
+        <% }); %>
+      </table>
+    </div>
   </body>
 </html>

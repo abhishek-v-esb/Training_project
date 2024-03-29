@@ -29,7 +29,7 @@ a {
   color: blue;
 }
 a:visited {
-  color: green;
+  color: white;
 }
 .navigation {
   display: flex;

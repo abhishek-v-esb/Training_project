@@ -1,9 +1,12 @@
 body {
-  background-color: #fefefe;
+  /* background-color: #fefefe; */
   font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f6fd;
 }
 form {
-  background-color: #98cfff;
+  background-color: #04021f;
   padding: 20px;
   border-radius: 10px;
 }
@@ -19,17 +22,21 @@ th,
 td {
   padding: 15px;
 }
+#heading {
+  font-size: 2.5rem;
+
+  text-align: center;
+}
 .projectName {
   text-decoration: none;
 }
 
 #logout {
-  margin: 10px;
+  margin: 10px 25px;
   padding: 10px;
-  width: 100px;
   background-color: red;
   border-radius: 10px;
-  color: white;
+  color: whitesmoke;
   text-decoration: none;
   font-size: large;
 }
@@ -38,12 +45,13 @@ td {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  height: 100vh;
   align-items: center;
 }
 
 .ip-fields {
   margin: 10px;
+  color: whitesmoke;
 }
 .errors {
   display: none;
@@ -60,6 +68,10 @@ td {
   width: 100px;
   border-radius: 10px;
 }
+#login:hover {
+  cursor: pointer;
+}
+
 #login-div {
   display: flex;
   justify-content: space-between;
@@ -68,6 +80,12 @@ td {
 }
 #forgot {
   text-align: right;
+  color: #adb4ff;
+  text-decoration: none;
+}
+#forgot:hover {
+  color: whitesmoke;
+  text-decoration: underline;
 }
 #submit {
   display: flex;
@@ -80,9 +98,7 @@ td {
   width: 100px;
   border-radius: 10px;
 }
-a {
-  width: 300px;
-}
+
 #submit-div {
   width: 300px;
   overflow-wrap: break-word;
@@ -101,4 +117,51 @@ input {
   align-items: center;
   text-align: center;
   flex-direction: column;
+}
+
+/* projects.css */
+
+#table-holder {
+  padding: 25px 0;
+}
+#table-div {
+  background-color: #04021f;
+  color: white;
+  width: 30vw;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#task-table {
+  margin: auto auto;
+  color: whitesmoke;
+}
+
+#task-table a {
+  color: #adb4ff;
+}
+#task-table a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.heads {
+  font-size: large;
+  color: #e5e5ff;
+  font-weight: bold;
+}
+.num-cell {
+  width: 70px;
+  text-align: center;
+}
+
+#logout-div {
+  display: flex;
+  justify-content: end;
+  width: 135px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

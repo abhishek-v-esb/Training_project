@@ -5,6 +5,25 @@ body {
   padding: 0;
   margin: 0;
 }
+td {
+  height: 70px;
+  padding: 10px;
+}
+label {
+  font-size: large;
+}
+input {
+  height: 30px;
+  vertical-align: inherit;
+}
+select {
+  height: 30px;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  height: 16px;
+  width: 52px;
+}
 #data,
 .data-tr,
 .data-td,
