@@ -75,7 +75,6 @@ function register() {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const valid = validateUser();
-      console.log(valid);
       if (valid == true) {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "/register", true);
@@ -109,22 +108,18 @@ function checker(data) {
     p.style.color = "red";
     submitDiv.appendChild(p);
   } else {
-    // console.log();
-    // console.log(JSON.parse(data).link);
     const submitDiv = document.getElementById("submit-div");
     const a = document.createElement("a");
     document.getElementById("submit").remove();
     const p = document.createElement("p");
     p.innerHTML = "Click on below link to activate your account";
     a.id = "link";
-    a.innerText = ` http://localhost:8016/password?activeCode=${
-      JSON.parse(data).link
-    }&id=${JSON.parse(data).id}`;
+    a.innerText = ` /password?activeCode=${JSON.parse(data).link}&id=${
+      JSON.parse(data).id
+    }`;
     a.setAttribute(
       "href",
-      ` http://localhost:8016/password?activeCode=${JSON.parse(data).link}&id=${
-        JSON.parse(data).id
-      }`
+      ` /password?activeCode=${JSON.parse(data).link}&id=${JSON.parse(data).id}`
     );
     submitDiv.appendChild(p);
     submitDiv.appendChild(a);
@@ -161,9 +156,7 @@ function password() {
 }
 
 function redirectLogin(data) {
-  // console.log(data);
   const div = document.getElementById("ip-holder");
-  // console.log(div);
   div.innerHTML = "";
   const h1 = document.createElement("h1");
   h1.innerHTML = "User modified!";
@@ -179,7 +172,6 @@ function login() {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const valid = validateLogin();
-      console.log(valid);
       if (valid == true) {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "/login", true);
@@ -212,7 +204,6 @@ function forgot() {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const valid = validateForgotEmail();
-      console.log(valid);
       if (valid == true) {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "/forgot", true);
@@ -233,13 +224,11 @@ function forgot() {
 }
 
 function newPassword(data) {
-  console.log(data);
   const userExist = document.getElementById("userExist");
   if (userExist) {
     userExist.remove();
   }
   const submitDiv = document.getElementById("submit-div");
-  console.log(submitDiv);
   if (data == "false") {
     const p = document.createElement("p");
     p.innerHTML = "Email not verified!";
@@ -250,21 +239,17 @@ function newPassword(data) {
   } else {
     const submit = document.getElementById("submit");
     submit.remove();
-    // console.log();
-    // console.log(JSON.parse(data).link);
     const submitDiv = document.getElementById("submit-div");
     const a = document.createElement("a");
     const p = document.createElement("p");
     p.innerHTML = "Click on below link to activate your account";
     a.id = "link";
-    a.innerText = ` http://localhost:8016/password?activeCode=${
-      JSON.parse(data).link
-    }&id=${JSON.parse(data).id}`;
+    a.innerText = ` /password?activeCode=${JSON.parse(data).link}&id=${
+      JSON.parse(data).id
+    }`;
     a.setAttribute(
       "href",
-      ` http://localhost:8016/password?activeCode=${JSON.parse(data).link}&id=${
-        JSON.parse(data).id
-      }`
+      ` /password?activeCode=${JSON.parse(data).link}&id=${JSON.parse(data).id}`
     );
     submitDiv.appendChild(p);
     submitDiv.appendChild(a);

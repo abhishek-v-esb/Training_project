@@ -1,5 +1,4 @@
 const con = require("../../connection/connection");
-const insert = require("../EXP7_job_application/insert");
 
 exports.updateData = (req, res) => {
   const pagebody = req.body;

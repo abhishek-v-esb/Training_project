@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/style/ExpressTasks/EXP1_grid.css" />
   </head>
   <body>
+    <%console.log(count)%>
     <div class="container">
       <div class="navigation">
         <div>
@@ -17,9 +18,9 @@
             <%}%></a
           >
         </div>
-        <%countDec = count -1%>
+
         <div>
-          <a href="/EXP1/sorted?id=<%=countDec%>&field=<%=field%>"
+          <a href="/EXP1/sorted?id=<%=Number(count)-1%>&field=<%=field%>"
             ><%if(count==1){%>
             <button disabled><</button>
             <%}else{%>
@@ -28,9 +29,9 @@
           >
         </div>
         <div><%=count%></div>
-        <%countInc = count +1%>
+
         <div>
-          <a href="/EXP1/sorted?id=<%=countInc%>&field=<%=field%>"
+          <a href="/EXP1/sorted?id=<%=Number(count)+1%>&field=<%=field%>"
             ><%if(count==total/records){%>
             <button disabled>></button>
             <%}else{%>

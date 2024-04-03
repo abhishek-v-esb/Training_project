@@ -36,7 +36,7 @@ exports.checkStatus = (req, res) => {
       `update users set activation_link = "${code}" where id="${req.query.id}"`,
       function (err) {
         if (err) throw err;
-        const link = ` http://localhost:8016/password?activeCode=${code}&id=${req.query.id}`;
+        const link = ` /password?activeCode=${code}&id=${req.query.id}`;
         res.render("pages/registration/regenerateLink", {
           link: link,
         });

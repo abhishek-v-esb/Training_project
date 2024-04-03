@@ -43,7 +43,7 @@ function getExistingData() {
   var xhr = new XMLHttpRequest();
   const id = document.getElementById("hiddenId").value;
 
-  xhr.open("GET", `http://localhost:8007/EXP7/update?id=${id}`, true);
+  xhr.open("GET", `/EXP7/update?id=${id}`, true);
 
   xhr.onload = function () {
     if (this.status == 200) {
@@ -156,7 +156,7 @@ form.addEventListener("submit", (event) => {
     xhr.send(new URLSearchParams(data));
 
     xhr.onload = () => {
-      window.location.href = "http://localhost:8007/EXP7/display";
+      window.location.href = "/EXP7/display";
     };
   }
 });
@@ -171,11 +171,11 @@ function selectedState(e) {
   if (e == undefined) {
     type = "states";
 
-    url = "http://localhost:8007/EXP7/states";
+    url = "/EXP7/states";
   } else {
     type = "cities";
 
-    url = `http://localhost:8007/EXP7/cities?state=${e.selectedIndex}`;
+    url = `/EXP7/cities?state=${e.selectedIndex}`;
   }
 
   var xhr = new XMLHttpRequest();
@@ -242,26 +242,6 @@ function navActivate() {
     document.getElementById("submit").style.display = "none";
   }
 }
-
-// function headerClick(e) {
-//   // console.log(e.id);
-//   for (each in page) {
-//     // console.log(page[each]);
-//     document
-//       .getElementById(`${page[each]}_head`)
-//       .classList.remove("selected-head");
-//     console.log();
-//     const key = Object.keys(page).find((key) => page[key] === page[each]);
-//     if (e.id === `${page[each]}_head`) {
-//       document.getElementById(`${page[key]}`).style.display = "block";
-//     } else {
-//       document.getElementById(`${page[key]}`).style.display = "none";
-//     }
-
-//     //
-//   }
-//   document.getElementById(`${e.id}`).classList.add("selected-head");
-// }
 
 function validate() {
   const tempMerge = merge(required, isNum);
