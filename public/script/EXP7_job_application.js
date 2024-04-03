@@ -73,9 +73,7 @@ function addetails(data) {
   //education
   const board = ["ssc", "hsc", "bachelor", "master"];
   board.forEach((element) => {
-    const education_type = eval(
-      "data.education." + element + ".education_type"
-    );
+    const education_type = eval("data.education." + element + ".board_name");
     const passing_percentage = eval(
       "data.education." + element + ".passing_percentage"
     );
@@ -243,42 +241,15 @@ function navActivate() {
   }
 }
 
-function validate() {
-  const tempMerge = merge(required, isNum);
-  const finMerge = merge(tempMerge, isStr);
-
-  for (check of finMerge) {
-    const element = document.getElementById(check);
-
-    const value = element.value.trim();
-    const errorspan = document.getElementById(`${check}_error`);
-    if (required.includes(check) && value == "") {
-      errorspan.innerHTML = "please enter the field";
-
-      document.getElementById(check).focus();
-      return false;
-    }
-    if (isNum.includes(check) && !value.match(/^[0-9]+$/)) {
-      errorspan.innerHTML = "enter a number";
-      document.getElementById(check).focus();
-      return false;
-    }
-    if (isStr.includes(check) && !value.match(/^[A-Za-z]+$/)) {
-      errorspan.innerHTML = "enter a string";
-      document.getElementById(check).focus();
-      return false;
-    }
-    if (
-      email.includes(check) &&
-      !value.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)
-    ) {
-      errorspan.innerHTML = "enter proper email";
-      return false;
-    }
-    errorspan.innerHTML = "";
+function activateBtn() {
+  const currentUrl = window.location.href;
+  if (currentUrl.includes("update")) {
+    document.getElementById("submit").disabled = true;
+    document.getElementById("update").disabled = false;
+  } else {
+    document.getElementById("submit").disabled = false;
+    document.getElementById("update").disabled = true;
   }
-
-  return true;
 }
 
 function checkLang(checkbox) {
@@ -344,7 +315,7 @@ function enableRef(input) {
 function addCompRow() {
   const tr = document.createElement("tr");
   const body = document.querySelector("#compTable tbody");
-  const id = parseInt(body.lastElementChild.id);
+  const id = parseInt(body.lastElementChild.id.slice(-1));
 
   tr.id = id + 1;
   tr.innerHTML = `<td><label for="company">Company:</label></td>
@@ -398,7 +369,8 @@ function addCompRow() {
 
 function removeCompRow() {
   const element = document.querySelector("#compTable tbody").lastElementChild;
-  if (element.id > 2) {
+  console.log(element);
+  if (parseInt(element.id.slice(-1)) > 2) {
     element.remove();
   }
 }
@@ -453,13 +425,40 @@ function removeRefRow() {
   }
 }
 
-function activateBtn() {
-  const currentUrl = window.location.href;
-  if (currentUrl.includes("update")) {
-    document.getElementById("submit").disabled = true;
-    document.getElementById("update").disabled = false;
-  } else {
-    document.getElementById("submit").disabled = false;
-    document.getElementById("update").disabled = true;
+function validate() {
+  const tempMerge = merge(required, isNum);
+  const finMerge = merge(tempMerge, isStr);
+
+  for (check of finMerge) {
+    const element = document.getElementById(check);
+
+    const value = element.value.trim();
+    const errorspan = document.getElementById(`${check}_error`);
+    if (required.includes(check) && value == "") {
+      errorspan.innerHTML = "please enter the field";
+
+      document.getElementById(check).focus();
+      return false;
+    }
+    if (isNum.includes(check) && !value.match(/^[0-9]+$/)) {
+      errorspan.innerHTML = "enter a number";
+      document.getElementById(check).focus();
+      return false;
+    }
+    if (isStr.includes(check) && !value.match(/^[A-Za-z]+$/)) {
+      errorspan.innerHTML = "enter a string";
+      document.getElementById(check).focus();
+      return false;
+    }
+    if (
+      email.includes(check) &&
+      !value.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)
+    ) {
+      errorspan.innerHTML = "enter proper email";
+      return false;
+    }
+    errorspan.innerHTML = "";
   }
+
+  return true;
 }

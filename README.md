@@ -1,5 +1,5 @@
-home route : http://localhost:8007/register
+home route : /register
 
-existing user credentials - 
-  email : abhi@123
-  password : normal
+existing user credentials -
+email : abhi@123
+password : normal
