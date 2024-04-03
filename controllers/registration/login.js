@@ -14,7 +14,7 @@ var con = mysql.createConnection({
 
 exports.loginUser = (req, res) => {
   const pagebody = req.body;
-  // console.log(pagebody);
+
   con.query(
     `select email from users where email="${pagebody.loginEmail}"`,
     function (err, result) {
@@ -38,7 +38,7 @@ exports.loginUser = (req, res) => {
 
               res
                 .cookie("access_token", token, {
-                  maxAge: 1000 * 60 * 60 * 10, //10 hrs
+                  maxAge: 1000 * 60 * 60 * 10,
                   httpOnly: true,
                 })
                 .status(200)

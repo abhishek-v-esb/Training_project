@@ -10,9 +10,7 @@ var con = mysql.createConnection({
 });
 exports.registerUser = (req, res) => {
   const pagebody = req.body;
-  // const saltChar =
-  //   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  // const linkChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
   start();
   async function start() {
     await checkIfExist();

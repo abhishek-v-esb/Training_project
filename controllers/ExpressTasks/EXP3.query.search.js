@@ -35,7 +35,7 @@ exports.runQuery = (req, res) => {
   }
 
   let field = req.query.field ? req.query.field : "std_master.std_id";
-  // let orderby = req.query.orderby ? req.query.orderby : "asc";
+
   let orderby;
 
   if (req.query.orderby == "asc") {

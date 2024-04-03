@@ -11,7 +11,7 @@ var con = mysql.createConnection({
 
 exports.forgotPass = (req, res) => {
   const email = req.body.forgot_email;
-  //   console.log(email);
+
   con.query(
     `select email,id from users where email="${email}"`,
 

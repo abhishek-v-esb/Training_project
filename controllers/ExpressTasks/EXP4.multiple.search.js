@@ -17,12 +17,6 @@ exports.runQuery = (req, res) => {
   const city = req.body.city;
   const country = req.body.country;
   const sem = req.body.sem;
-  // let andOr = "&&";
-  // if (req.body.andOr == "and") {
-  //   andOr = andOr + "&&";
-  // } else if (req.body.andOr == "or") {
-  //   andOr = andOr + "||";
-  // }
 
   let sql = "";
   let stdId = "";

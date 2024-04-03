@@ -9,9 +9,9 @@ var con = mysql.createConnection({
 
 exports.runQuery = (req, res) => {
   let body = req.body.input + ".";
-  // body = body.replace(/\s/g, "");
+
   body = body.split(" ").join("");
-  // console.log(temp);
+
   let fname = [];
   let lname = [];
   let email = [];
@@ -88,7 +88,7 @@ exports.runQuery = (req, res) => {
     const email_str = stringForm(email, "email");
     const city_str = stringForm(city, "city");
     const sem_str = stringForm(sem, "sem");
-    // console.log(fname_str, lname_str, email_str, city_str, sem_str);
+  
     let queryholder = [fname_str, lname_str, email_str, city_str, sem_str];
     let query = queryGen(queryholder);
 
@@ -103,9 +103,6 @@ exports.runQuery = (req, res) => {
       });
       return random.slice(0, -4);
     }
-    // console.log(query);
-
-    // const query = `(${fname_str}) and (${lname_str}) and (${email_str}) and (${city_str}) and (${sem_str});`;
 
     sql = `select std_fname as First_Name,std_lname as Last_Name,email as Email,city as City,sem as Semester from std_master where ${query};`;
   } else {
@@ -113,7 +110,7 @@ exports.runQuery = (req, res) => {
       "select std_fname as First_Name,std_lname as Last_Name,email as Email,city as City,sem as Semester from std_master";
   }
   body = req.body.input;
-  // console.log(sql);
+
   con.query(sql, function (err, result, fields) {
     if (err) {
       res.render("pages/ExpressTasks/EXP5_delimeter_search/table", {

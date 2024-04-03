@@ -28,16 +28,16 @@ routes.get("/cities", (req, res) => {
   );
 });
 
-routes.get("/insert", (req, res) => {
+routes.get("/insert", authorization.authorization, (req, res) => {
   let id;
   res.render("pages/ExpressTasks/EXP7_job_application/index", {
     id: id,
   });
 });
 
-routes.get("/updateform", (req, res) => {
+routes.get("/updateform", authorization.authorization, (req, res) => {
   let id = req.query.id;
-  // console.log(id);
+
   res.render("pages/ExpressTasks/EXP7_job_application/index", {
     id: id,
   });
@@ -45,10 +45,10 @@ routes.get("/updateform", (req, res) => {
 
 routes.post("/insert", insert.insertData);
 
-routes.get("/update", update.existingData);
+routes.get("/update", authorization.authorization, update.existingData);
 
 routes.post("/update", update.updateData);
 
-routes.get("/display", display.displayData);
+routes.get("/display", authorization.authorization, display.displayData);
 
 module.exports = routes;

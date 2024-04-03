@@ -3,7 +3,7 @@ const authorization = require("../../middleware/authorization.js");
 
 const data = require("../../controllers/ExpressTasks/EXP4.multiple.search.js");
 
-routes.get("/input", data.runQuery);
-routes.post("/input", data.runQuery);
+routes.get("/input", authorization.authorization, data.runQuery);
+routes.post("/input", authorization.authorization, data.runQuery);
 
 module.exports = routes;

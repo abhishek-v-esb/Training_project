@@ -16,7 +16,6 @@ exports.checkStatus = (req, res) => {
     `select * from users where activation_link = "${req.query.activeCode}" and id = "${req.query.id}"`,
     function (err, result) {
       if (err) throw err;
-      // console.log(result);
       const d1 = new Date(result[0].update_time);
       const d2 = new Date();
 
@@ -52,7 +51,6 @@ exports.userPassword = (req, res) => {
   const salt = makeid(4);
   const password = md5(pagebody.password + salt);
   const values = ["1", salt, password, pagebody.hiddenid];
-  // console.log(values);
 
   con.query(
     "update users set link_status = ?,salt=?,password=? where id = ?",
