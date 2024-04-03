@@ -1,11 +1,4 @@
-var mysql = require("mysql");
-
-var con = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USERS,
-  password: process.env.PASSWORDS,
-  database: process.env.DATABASE,
-});
+const con = require("../../connection/connection");
 
 exports.runQuery = (req, res) => {
   let body = req.body.input + ".";
@@ -88,7 +81,7 @@ exports.runQuery = (req, res) => {
     const email_str = stringForm(email, "email");
     const city_str = stringForm(city, "city");
     const sem_str = stringForm(sem, "sem");
-  
+
     let queryholder = [fname_str, lname_str, email_str, city_str, sem_str];
     let query = queryGen(queryholder);
 

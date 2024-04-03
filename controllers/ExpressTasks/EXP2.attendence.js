@@ -1,14 +1,7 @@
-var mysql = require("mysql");
 const dotenv = require("dotenv");
+const con = require("../../connection/connection");
+
 dotenv.config();
-
-var con = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USERS,
-  password: process.env.PASSWORDS,
-  database: process.env.DATABASE,
-});
-
 exports.attendence = (req, res) => {
   const year = req.query.year ? req.query.year : 23;
   const month = req.query.month ? req.query.month : 12;

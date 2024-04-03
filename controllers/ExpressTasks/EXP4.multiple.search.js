@@ -1,11 +1,4 @@
-var mysql = require("mysql");
-
-var con = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USERS,
-  password: process.env.PASSWORDS,
-  database: process.env.DATABASE,
-});
+const con = require("../../connection/connection");
 
 exports.runQuery = (req, res) => {
   let count = req.query.id ? req.query.id : 1;

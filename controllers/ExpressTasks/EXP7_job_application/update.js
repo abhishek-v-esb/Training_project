@@ -1,15 +1,8 @@
-var mysql = require("mysql");
+const con = require("../../../connection/connection");
 
 const dotenv = require("dotenv");
 
 dotenv.config();
-
-var con = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USERS,
-  password: process.env.PASSWORDS,
-  database: process.env.DATABASE,
-});
 
 exports.existingData = (req, res) => {
   const id = req.query.id;

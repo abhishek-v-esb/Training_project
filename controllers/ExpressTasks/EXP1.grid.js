@@ -1,14 +1,6 @@
-var mysql = require("mysql");
 const dotenv = require("dotenv");
 dotenv.config();
-
-var con = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USERS,
-  password: process.env.PASSWORDS,
-  database: process.env.DATABASE,
-});
-
+const con = require("../../connection/connection");
 exports.showData = (req, res) => {
   con.connect(function (err) {
     if (err) throw err;
