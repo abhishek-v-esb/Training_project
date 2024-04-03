@@ -8,7 +8,6 @@
   <body>
     <div id="container">
       <div id="holder">
-        <h3>Abhishek Verma</h3>
         <center><h2>Student Attendence</h2></center>
         <div id="upper">
           <div id="selecter">
@@ -145,15 +144,6 @@
       </div>
     </div>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var input = document.getElementById("month");
-        if (sessionStorage["month"]) {
-          input.value = sessionStorage["month"];
-        }
-        input.onchange = function () {
-          sessionStorage["month"] = this.value;
-        };
-      });
       function gotosite() {
         var value = document.getElementById("month").value;
         window.location.href = value;

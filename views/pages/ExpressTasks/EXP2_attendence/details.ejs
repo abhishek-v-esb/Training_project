@@ -7,6 +7,7 @@
   </head>
   <body>
     <div id="container">
+      <%try{%>
       <div id="holder">
         <h1><%=name%></h1>
         <table border="1">
@@ -42,6 +43,9 @@
           <% }); %>
         </table>
       </div>
+      <%}catch(error){%>
+      <h2>Unable to get data</h2>
+      <%}%>
     </div>
   </body>
 </html>

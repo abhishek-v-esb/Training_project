@@ -1,6 +1,4 @@
-const dotenv = require("dotenv");
-dotenv.config();
-const con = require("../../connection/connection");
+const con = require("../connection/connection");
 
 exports.home = (req, res) => {
   con.query("show tables", function (err, tables) {
@@ -22,12 +20,12 @@ exports.runQuery = (req, res) => {
 
   var queryStr = "";
   if (req.body.query) {
-    queryStr = req.body.query;
+    queryStr = queryStr + req.body.query;
   } else {
-    queryStr = req.query.sql;
+    queryStr = queryStr + req.query.sql;
   }
 
-  let field = req.query.field ? req.query.field : "std_master.std_id";
+  const field = req.query.field ? req.query.field : "std_master.std_id";
 
   let orderby;
 
@@ -36,15 +34,13 @@ exports.runQuery = (req, res) => {
   } else if (req.query.orderby == "desc" || req.query.orderby == null) {
     orderby = "asc";
   }
-
+  const limit = count * records - records;
   if (queryStr) {
     con.query(
-      queryStr +
-        ` order by ${field} ${orderby} limit ${
-          count * records - records
-        },${records};`,
+      `${queryStr} order by ${field} ${orderby} limit ?,?;`,
+      [limit, records],
       function (err, result, fields) {
-        // console.log(fields);
+        if (err) throw err;
         let sql = queryStr.split(" ");
 
         con.query(`select count(*) from ${sql[3]}`, function (err, total) {
@@ -55,9 +51,8 @@ exports.runQuery = (req, res) => {
           if (count >= total / records) {
             count = total / records;
           }
-          // console.log();
           if (result) {
-            let cols = [];
+            const cols = [];
             fields.forEach((element) => {
               cols.push(element.name);
             });

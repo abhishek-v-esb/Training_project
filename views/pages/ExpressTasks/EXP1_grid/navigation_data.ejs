@@ -9,31 +9,52 @@
     <div class="container">
       <div class="navigation">
         <div>
-          <a href="/EXP1/sorted?id=1&field=<%=field%>"><button><<</button></a>
+          <a href="/EXP1/sorted?id=1&field=<%=field%>"
+            ><%if(count==1){%>
+            <button disabled><<</button>
+            <%}else{%>
+            <button><<</button>
+            <%}%></a
+          >
         </div>
         <%countDec = count -1%>
         <div>
           <a href="/EXP1/sorted?id=<%=countDec%>&field=<%=field%>"
-            ><button><</button></a
+            ><%if(count==1){%>
+            <button disabled><</button>
+            <%}else{%>
+            <button><</button>
+            <%}%></a
           >
         </div>
         <div><%=count%></div>
         <%countInc = count +1%>
         <div>
           <a href="/EXP1/sorted?id=<%=countInc%>&field=<%=field%>"
-            ><button>></button></a
+            ><%if(count==total/records){%>
+            <button disabled>></button>
+            <%}else{%>
+            <button>></button>
+            <%}%></a
           >
         </div>
         <div>
-          <a href="/EXP1/sorted?id=500&field=<%=field%>"><button>>></button></a>
+          <a href="/EXP1/sorted?id=500&field=<%=field%>"
+            ><%if(count==total/records){%>
+            <button disabled>>></button>
+            <%}else{%>
+            <button>>></button>
+            <%}%></a
+          >
         </div>
       </div>
     </div>
     <p>Ordered by : <%=field%></p>
+    <%try{%>
     <table border="1">
       <tr>
         <th>
-          <a href="/EXP1/sorted?id=<%=count%>&field=std_id">Student ID</a>
+          <a href="/EXP1/sorted?page=<%=count%>&field=std_id">Student ID</a>
         </th>
         <th>
           <a href="/EXP1/sorted?id=<%=count%>&field=std_fname">First Name</a>
@@ -68,30 +89,8 @@
       </tr>
       <% }); %>
     </table>
-    <div class="container">
-      <div class="navigation">
-        <div>
-          <a href="/EXP1/sorted?id=<%=count%>&field=<%=field%>"
-            ><button><<</button></a
-          >
-        </div>
-        <%countDec = count -1%>
-        <div>
-          <a href="/EXP1/sorted?id=<%=countDec%>&field=<%=field%>"
-            ><button><</button></a
-          >
-        </div>
-        <div><%=count%></div>
-        <%countInc = count +1%>
-        <div>
-          <a href="/EXP1/sorted?id=<%=countInc%>&field=<%=field%>"
-            ><button>></button></a
-          >
-        </div>
-        <div>
-          <a href="/EXP1/sorted?id=500&field=<%=field%>"><button>>></button></a>
-        </div>
-      </div>
-    </div>
+    <%}catch(error){%>
+    <h2>Unable to get data</h2>
+    <%}%>
   </body>
 </html>

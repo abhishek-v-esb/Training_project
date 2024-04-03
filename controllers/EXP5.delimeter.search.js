@@ -1,15 +1,15 @@
-const con = require("../../connection/connection");
+const con = require("../connection/connection");
 
 exports.runQuery = (req, res) => {
   let body = req.body.input + ".";
 
   body = body.split(" ").join("");
 
-  let fname = [];
-  let lname = [];
-  let email = [];
-  let city = [];
-  let sem = [];
+  const fname = [];
+  const lname = [];
+  const email = [];
+  const city = [];
+  const sem = [];
   let currentDel = 0;
   let nextDel = 0;
 

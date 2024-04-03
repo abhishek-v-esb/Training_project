@@ -1,7 +1,7 @@
 const routes = require("express").Router();
 const authorization = require("../../middleware/authorization.js");
 
-const data = require("../../controllers/ExpressTasks/EXP3.query.search.js");
+const data = require("../../controllers/EXP3.query.search.js");
 
 routes.get("/home", authorization.authorization, data.home);
 routes.get("/input", authorization.authorization, data.runQuery);

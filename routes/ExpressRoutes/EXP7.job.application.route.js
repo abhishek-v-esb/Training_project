@@ -1,8 +1,9 @@
 const routes = require("express").Router();
 const authorization = require("../../middleware/authorization.js");
-const display = require("../../controllers/ExpressTasks/EXP7_job_application/display.js");
-const insert = require("../../controllers/ExpressTasks/EXP7_job_application/insert.js");
-const update = require("../../controllers/ExpressTasks/EXP7_job_application/update.js");
+const display = require("../../controllers/EXP7_job_application/display.js");
+const insert = require("../../controllers/EXP7_job_application/insert.js");
+const fill = require("../../controllers/EXP7_job_application/fill.js");
+const update = require("../../controllers/EXP7_job_application/update.js");
 const con = require("../../connection/connection.js");
 
 routes.get("/states", (req, res) => {
@@ -38,7 +39,7 @@ routes.get("/updateform", authorization.authorization, (req, res) => {
 
 routes.post("/insert", insert.insertData);
 
-routes.get("/update", authorization.authorization, update.existingData);
+routes.get("/update", authorization.authorization, fill.existingData);
 
 routes.post("/update", update.updateData);
 

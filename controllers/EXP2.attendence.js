@@ -1,7 +1,4 @@
-const dotenv = require("dotenv");
-const con = require("../../connection/connection");
-
-dotenv.config();
+const con = require("../connection/connection");
 exports.attendence = (req, res) => {
   const year = req.query.year ? req.query.year : 23;
   const month = req.query.month ? req.query.month : 12;
@@ -16,8 +13,14 @@ exports.attendence = (req, res) => {
       count * records - records
     },${records};  `,
     function (err, result) {
+      if (err) {
+        res.send("data not found");
+      }
       con.query("select count(*) from std_master", function (err, total) {
-        if (err) throw err;
+        if (err) {
+          res.send("data not found");
+        }
+
         if (count == null || count < 1) {
           count = 1;
         }
@@ -42,19 +45,25 @@ exports.attendence = (req, res) => {
 
 exports.details = (req, res) => {
   const id = req.query.id;
-  con.query(
-    `select exam_master.sub_id,std_fname,std_lname,sub_name,sum(case when exam_master.type_id = 1 then exam_master.p_omarks else 0 end) as pre_pr,sum(case when exam_master.type_id = 1 then exam_master.t_omarks else 0 end) as pre_th,sum(case when exam_master.type_id = 2 then exam_master.p_omarks else 0 end) as ter_pr,sum(case when exam_master.type_id = 2 then exam_master.t_omarks else 0 end) as ter_th,sum(case when exam_master.type_id = 3 then exam_master.p_omarks else 0 end) as fin_pr,sum(case when exam_master.type_id = 3 then exam_master.t_omarks else 0 end) as fin_th from (exam_master inner join subject on exam_master.sub_id=subject.sub_id) inner join std_master on std_master.std_id=exam_master.std_id where exam_master.std_id =${id} group by sub_id;`,
-    function (err, result) {
-      const name = result[0].std_fname + " " + result[0].std_lname;
+  con.query("select count(*) from std_master;", function (err, total) {
+    if (id > Object.values(total[0])[0]) {
+      res.send("data not found");
+    } else {
+      con.query(
+        `select exam_master.sub_id,std_fname,std_lname,sub_name,sum(case when exam_master.type_id = 1 then exam_master.p_omarks else 0 end) as pre_pr,sum(case when exam_master.type_id = 1 then exam_master.t_omarks else 0 end) as pre_th,sum(case when exam_master.type_id = 2 then exam_master.p_omarks else 0 end) as ter_pr,sum(case when exam_master.type_id = 2 then exam_master.t_omarks else 0 end) as ter_th,sum(case when exam_master.type_id = 3 then exam_master.p_omarks else 0 end) as fin_pr,sum(case when exam_master.type_id = 3 then exam_master.t_omarks else 0 end) as fin_th from (exam_master inner join subject on exam_master.sub_id=subject.sub_id) inner join std_master on std_master.std_id=exam_master.std_id where exam_master.std_id =${id} group by sub_id;`,
+        function (err, result) {
+          const name = result[0].std_fname + " " + result[0].std_lname;
 
-      if (err) throw err;
-      res.render("pages/ExpressTasks/EXP2_attendence/details", {
-        result: result,
-        name: name,
-        id: id,
-      });
+          if (err) throw err;
+          res.render("pages/ExpressTasks/EXP2_attendence/details", {
+            result: result,
+            name: name,
+            id: id,
+          });
+        }
+      );
     }
-  );
+  });
 };
 
 exports.results = (req, res) => {

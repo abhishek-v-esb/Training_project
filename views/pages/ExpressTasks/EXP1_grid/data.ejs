@@ -7,6 +7,7 @@
   </head>
   <body>
     <div class="container">
+      <%try{%>
       <table id="grid-table">
         <tr>
           <th>Student ID</th>
@@ -35,6 +36,9 @@
         </tr>
         <% }); %>
       </table>
+      <%}catch(error){%>
+      <h2>Unable to get data</h2>
+      <%}%>
     </div>
   </body>
 </html>

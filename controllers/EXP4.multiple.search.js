@@ -1,42 +1,37 @@
-const con = require("../../connection/connection");
+const con = require("../connection/connection");
 
 exports.runQuery = (req, res) => {
   let count = req.query.id ? req.query.id : 1;
 
-  const std_fname = req.body.std_fname;
-  const std_lname = req.body.std_lname;
-  const gender = req.body.gender;
-  const dob = req.body.dob;
-  const city = req.body.city;
-  const country = req.body.country;
-  const sem = req.body.sem;
+  const body = req.body;
 
   let sql = "";
   let stdId = "";
-  if (req.body.input) {
-    sql = `select * from std_master where std_id in (${req.body.input})`;
+  if (body.input) {
+    sql = `select * from std_master where std_id in (${body.input})`;
   } else if (req.query.stdId) {
     stdId = req.query.stdId;
     sql = `select * from std_master where std_id in (${req.query.stdId})`;
   } else if (
-    std_fname != undefined &&
-    std_lname != undefined &&
-    gender != undefined &&
-    dob != undefined &&
-    city != undefined &&
-    country != undefined &&
-    sem != undefined
+    body.std_fname != undefined &&
+    body.std_lname != undefined &&
+    body.gender != undefined &&
+    body.dob != undefined &&
+    body.city != undefined &&
+    body.country != undefined &&
+    body.sem != undefined
   ) {
-    sql = `select * from std_master where std_fname like '${std_fname}%' && std_lname like '${std_lname}%' && gender like '${gender}%' && dob like '${dob}%' && city like '${city}%' && country like '${country}%' && sem like '%${sem}'`;
+    sql = `select * from std_master where std_fname like '${body.std_fname}%' && std_lname like '${body.std_lname}%' && gender like '${body.gender}%' && dob like '${body.dob}%' && city like '${body.city}%' && country like '${body.country}%' && sem like '%${body.sem}'`;
   } else {
     sql = `select * from std_master`;
   }
 
   const records = 10;
-  const newsql = sql.replace("*", "count(*)");
 
+  const limit = count * records - records;
   con.query(
-    sql + ` limit ${count * records - records},${records};`,
+    sql + ` limit ?,?;`,
+    [limit, records],
     function (err, result, fields) {
       if (err) {
         res.send("data not found");
@@ -51,7 +46,7 @@ exports.runQuery = (req, res) => {
             count = total / records;
           }
 
-          let cols = [];
+          const cols = [];
           fields.forEach((element) => {
             cols.push(element.name);
           });
@@ -64,14 +59,13 @@ exports.runQuery = (req, res) => {
               total: totalData,
               records: records,
               stdId: stdId,
-
-              std_fname: std_fname,
-              std_lname: std_lname,
-              gender: gender,
-              dob: dob,
-              city: city,
-              country: country,
-              sem: sem,
+              std_fname: body.std_fname,
+              std_lname: body.std_lname,
+              gender: body.gender,
+              dob: body.dob,
+              city: body.city,
+              country: body.country,
+              sem: body.sem,
             });
           } else {
             res.send("data not found");
@@ -80,5 +74,4 @@ exports.runQuery = (req, res) => {
       }
     }
   );
-  function render(sql) {}
 };

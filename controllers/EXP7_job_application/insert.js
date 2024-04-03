@@ -1,6 +1,4 @@
-const con = require("../../../connection/connection");
-const dotenv = require("dotenv");
-dotenv.config();
+const con = require("../../connection/connection");
 
 exports.insertData = (req, res) => {
   const pagebody = req.body;
@@ -22,14 +20,12 @@ exports.insertData = (req, res) => {
     }
   }
 
-  // employee();
   function employee(pagebody) {
     return new Promise((resolve) => {
       let values = [];
       for (let i = 1; i < 14; i++) {
         values.push(Object.values(pagebody)[i]);
       }
-
       const sql =
         "insert into employee (first_name,last_name,emp_designation,address1,address2,email,phone,city,state,zip_code,dob,gender,relationship_status) values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
@@ -42,7 +38,7 @@ exports.insertData = (req, res) => {
       });
     });
   }
-  // education();
+
   function education(id) {
     return new Promise((resolve) => {
       pagebody.boardname.forEach((element, index) => {
@@ -56,7 +52,6 @@ exports.insertData = (req, res) => {
     });
   }
 
-  // work_exp();
   function work_exp(id) {
     return new Promise((resolve) => {
       pagebody.company.forEach((element, index) => {
@@ -68,7 +63,6 @@ exports.insertData = (req, res) => {
     });
   }
 
-  // language();
   function language(id) {
     return new Promise((resolve) => {
       pagebody.language.forEach((element) => {
@@ -98,7 +92,6 @@ exports.insertData = (req, res) => {
     });
   }
 
-  // technology();
   function technology(id) {
     return new Promise((resolve) => {
       const name = ["php", "MySql", "oracle", "laravel"];
@@ -126,7 +119,6 @@ exports.insertData = (req, res) => {
     });
   }
 
-  // ref_contact();
   function ref_contact(id) {
     return new Promise((resolve) => {
       pagebody.ref.forEach((element, index) => {
@@ -140,7 +132,6 @@ exports.insertData = (req, res) => {
     });
   }
 
-  // preference();
   function preference(id) {
     return new Promise((resolve) => {
       con.query(
