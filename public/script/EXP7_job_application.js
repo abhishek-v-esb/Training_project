@@ -1,6 +1,5 @@
 let count = 1;
 const form = document.querySelector("#form");
-
 const page = {
   1: "basic-details",
   2: "education",
@@ -10,7 +9,6 @@ const page = {
   6: "referenceContact",
   7: "preference",
 };
-
 const required = [
   "firstname",
   "lastname",
@@ -20,8 +18,8 @@ const required = [
   "email",
   "phone",
   "zipcode",
+  "dob",
 ];
-
 const isNum = ["phone", "zipcode"];
 const isStr = ["firstname", "lastname", "designation"];
 const email = ["email"];
@@ -35,8 +33,10 @@ const merge = (a, b, predicate = (a, b) => a === b) => {
 
 selectedState();
 navActivate();
+
 if (window.location.href.includes("updateform")) {
   getExistingData();
+  removeDisabled();
 }
 
 function getExistingData() {
@@ -56,7 +56,12 @@ function getExistingData() {
   };
   xhr.send();
 }
-
+function removeDisabled() {
+  const disabledInputs = document.getElementsByClassName("disabledClass");
+  for (const each of disabledInputs) {
+    each.disabled = false;
+  }
+}
 function addetails(data) {
   //basic
   document.getElementById("firstname").value = data.employee.first_name;
@@ -68,6 +73,16 @@ function addetails(data) {
   document.getElementById("phone").value = data.employee.phone;
   document.getElementById("zipcode").value = data.employee.zip_code;
   document.getElementById("dob").value = data.employee.dob;
+  const states = document.getElementById("states");
+
+  for (const state of states) {
+    if (state.value == data.employee.state) {
+      state.selected = true;
+    }
+  }
+  document.getElementById(
+    "cities"
+  ).innerHTML = `<option>${data.employee.city}</option>`;
   document.getElementById(`${data.employee.gender}`).checked = true;
 
   //education
@@ -334,6 +349,7 @@ function addCompRow() {
       type="text"
       name="companydesignation"
       id="company${id + 1}designation"
+      class="disabledClass"
       disabled
     />
     <span class="error"
@@ -348,6 +364,7 @@ function addCompRow() {
       name="companyfrom"
       id="company${id + 1}from"
       placeholder="dd-mm-yyyy"
+      class="disabledClass"
       disabled
     />
     <span class="error"><p id="company${id + 1}from_error"></p></span>
@@ -359,6 +376,7 @@ function addCompRow() {
       name="companyto"
       id="company${id + 1}to"
       placeholder="dd-mm-yyyy"
+      class="disabledClass"
       disabled
     />
     <span class="error"><p id="company${id + 1}to_error"></p></span>
@@ -369,7 +387,7 @@ function addCompRow() {
 
 function removeCompRow() {
   const element = document.querySelector("#compTable tbody").lastElementChild;
-  console.log(element);
+
   if (parseInt(element.id.slice(-1)) > 2) {
     element.remove();
   }
@@ -382,6 +400,7 @@ function addRefRow() {
 
   const newId = `ref${id + 1}`;
   tr.id = `ref${id + 1}`;
+
   tr.innerHTML = `<td><label for="ref">Name:</label></td>
   <td>
     <input
@@ -399,6 +418,7 @@ function addRefRow() {
       type="text"
       name="refcontact"
       id="${newId}contact"
+      class="disabledClass"
       disabled
     />
     <span class="error"><p id="${newId}contact_error"></p></span>
@@ -409,6 +429,7 @@ function addRefRow() {
       type="text"
       name="refrelation"
       id="${newId}relation"
+      class="disabledClass"
       disabled
     />
     <span class="error"><p id="${newId}relation_error"></p></span>

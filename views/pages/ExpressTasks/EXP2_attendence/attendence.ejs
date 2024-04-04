@@ -14,18 +14,21 @@
             <select name="month" id="month">
               <option
                 class="option"
+                id="12"
                 value="/EXP2/attendence?year=23&month=12&days=31&id=<%=count%>&orderby=<%=orderby%>&field=<%=field%>"
               >
                 December 23
               </option>
               <option
                 class="option"
+                id="01"
                 value="/EXP2/attendence?year=24&month=01&days=31&id=<%=count%>&orderby=<%=orderby%>&field=<%=field%>"
               >
                 January 24
               </option>
               <option
                 class="option"
+                id="02"
                 value="/EXP2/attendence?year=24&month=02&days=29&id=<%=count%>&orderby=<%=orderby%>&field=<%=field%>"
               >
                 February 24
@@ -33,6 +36,19 @@
             </select>
             <button onclick="gotosite()">Search</button>
           </div>
+          <%if(month==12){%>
+          <script>
+            document.getElementById("12").selected = true;
+          </script>
+          <%}%> <%if(month==01){%>
+          <script>
+            document.getElementById("01").selected = true;
+          </script>
+          <%}%> <%if(month==02){%>
+          <script>
+            document.getElementById("02").selected = true;
+          </script>
+          <%}%>
           <div class="container">
             <div class="navigation">
               <div class="count">

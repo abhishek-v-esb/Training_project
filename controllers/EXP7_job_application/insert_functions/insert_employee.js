@@ -6,7 +6,7 @@ function insert_employee(pagebody) {
       values.push(Object.values(pagebody)[i]);
     }
     const sql =
-      "insert into employee (first_name,last_name,emp_designation,address1,address2,email,phone,city,state,zip_code,dob,gender,relationship_status) values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+      "insert into employee (first_name,last_name,emp_designation,address1,address2,email,phone,state,city,zip_code,dob,gender,relationship_status) values (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
     con.query(sql, values, function (err, result) {
       if (err) {
