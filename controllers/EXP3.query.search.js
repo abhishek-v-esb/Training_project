@@ -30,9 +30,9 @@ exports.runQuery = (req, res) => {
   let orderby;
 
   if (req.query.orderby == "asc") {
-    orderby = "desc";
-  } else if (req.query.orderby == "desc" || req.query.orderby == null) {
     orderby = "asc";
+  } else if (req.query.orderby == "desc" || req.query.orderby == null) {
+    orderby = "desc";
   }
   const limit = count * records - records;
   if (queryStr) {

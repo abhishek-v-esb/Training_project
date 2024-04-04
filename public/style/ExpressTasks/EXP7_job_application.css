@@ -104,3 +104,8 @@ p {
 .nav-btn:hover {
   cursor: pointer;
 }
+
+.error {
+  display: none;
+  color: red;
+}

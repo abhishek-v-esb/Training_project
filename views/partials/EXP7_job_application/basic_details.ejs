@@ -17,7 +17,7 @@
             autofocus
           />
 
-          <span class="error"><p id="firstname_error"></p></span>
+          <span class="error" id="firstname_error">Enter first name</span>
         </td>
         <td>
           <label for="lastname">Last Name:</label>
@@ -25,7 +25,7 @@
         <td>
           <input type="text" id="lastname" tabindex="2" name="lastname" />
 
-          <span class="error"><p id="lastname_error"></p></span>
+          <span class="error" id="lastname_error">Enter last name </span>
         </td>
         <td>
           <label for="designation">Designation:</label>
@@ -33,7 +33,7 @@
         <td>
           <input type="text" id="designation" tabindex="3" name="designation" />
 
-          <span class="error"><p id="designation_error"></p></span>
+          <span class="error" id="designation_error">Enter designation</span>
         </td>
       </tr>
       <tr>
@@ -49,7 +49,7 @@
             tabindex="4"
           ></textarea>
 
-          <span class="error"><p id="address1_error"></p></span>
+          <span class="error" id="address1_error">Enter address</span>
         </td>
         <td>
           <label for="address2">Address 2:</label>
@@ -63,7 +63,7 @@
             tabindex="5"
           ></textarea>
 
-          <span class="error"><p id="address2_error"></p></span>
+          <span class="error" id="address2_error">Enter address</span>
         </td>
       </tr>
       <tr>
@@ -79,7 +79,7 @@
             name="email"
           />
 
-          <span class="error"><p id="email_error"></p></span>
+          <span class="error" id="email_error">Enter email</span>
         </td>
         <td>
           <label for="phone">Phone:</label>
@@ -92,9 +92,10 @@
             placeholder="0000000000"
             maxlength="14"
             name="phone"
+            maxlength="10"
           />
 
-          <span class="error"><p id="phone_error"></p></span>
+          <span class="error" id="phone_error">Enter phone</span>
         </td>
       </tr>
       <tr>
@@ -103,9 +104,9 @@
         </td>
         <td>
           <select name="states" id="states" onchange="selectedState(this)">
-            <option>Select State</option>
+            <option value="">Select State</option>
           </select>
-          <span class="error"><p id="states_error"></p></span>
+          <span class="error" id="states_error">Enter state</span>
         </td>
         <td>
           <label for="city">City:</label>
@@ -114,7 +115,7 @@
           <select name="cities" id="cities">
             <option>Select City</option>
           </select>
-          <span class="error"><p id="city_error"></p></span>
+          <span class="error" id="cities_error">Enter city</span>
         </td>
         <td>
           <label for="zipcode">Zip code:</label>
@@ -122,7 +123,7 @@
         <td>
           <input type="text" id="zipcode" tabindex="10" name="zipcode" />
 
-          <span class="error"><p id="zipcode_error"></p></span>
+          <span class="error" id="zipcode_error">Enter zipcode</span>
         </td>
       </tr>
       <td>
@@ -137,7 +138,7 @@
           placeholder="dd-mm-yyyy"
         />
 
-        <span class="error"><p id="dob_error"></p></span>
+        <span class="error" id="dob_error">Enter Date</span>
       </td>
       <tr>
         <td>
@@ -152,9 +153,13 @@
         <td><label>Relationship status:</label></td>
         <td>
           <select name="relationship" id="relationship">
+            <option value="" selected>Select Status</option>
             <option id="single" value="single">Single</option>
             <option id="married" value="married">Married</option>
           </select>
+          <span class="error" id="relationship_error"
+            >Enter relationship status</span
+          >
         </td>
       </tr>
     </table>
