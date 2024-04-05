@@ -25,33 +25,28 @@ exports.runQuery = (req, res) => {
     queryStr = queryStr + req.query.sql;
   }
 
-  const field = req.query.field ? req.query.field : "std_master.std_id";
+  const field = req.query.field || "std_master.std_id";
 
-  let orderby;
+  let orderby = req.query.orderby || "asc";
 
-  if (req.query.orderby == "asc") {
-    orderby = "asc";
-  } else if (req.query.orderby == "desc" || req.query.orderby == null) {
-    orderby = "desc";
-  }
   const limit = count * records - records;
   if (queryStr) {
     con.query(
       `${queryStr} order by ${field} ${orderby} limit ?,?;`,
       [limit, records],
       function (err, result, fields) {
-        if (err) throw err;
-        let sql = queryStr.split(" ");
-
-        con.query(`select count(*) from ${sql[3]}`, function (err, total) {
+        try {
           if (err) throw err;
-          if (count == null || count < 1) {
-            count = 1;
-          }
-          if (count >= total / records) {
-            count = total / records;
-          }
-          if (result) {
+          let sql = queryStr.split(" ");
+
+          con.query(`select count(*) from ${sql[3]}`, function (err, total) {
+            if (err) throw err;
+            if (count == null || count < 1) {
+              count = 1;
+            }
+            if (count >= total / records) {
+              count = total / records;
+            }
             const cols = [];
             fields.forEach((element) => {
               cols.push(element.name);
@@ -67,10 +62,12 @@ exports.runQuery = (req, res) => {
               field: field,
               orderby: orderby,
             });
-          } else {
-            res.send("enter correct query");
-          }
-        });
+          });
+        } catch (error) {
+          res.send(
+            "Check query :------ only use 'std_master' as table -----do not use 'order by','limit' in query search box -----enter correct syntax of query"
+          );
+        }
       }
     );
   } else {

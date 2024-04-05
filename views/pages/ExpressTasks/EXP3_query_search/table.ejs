@@ -73,14 +73,15 @@
         <div class="table">
           <table border="1">
             <tr>
+              <%(orderby == "desc") ? orderby = "asc" : orderby = "desc"%>
               <%cols.forEach((col)=>{%>
               <th>
                 <a
                   href="/EXP3/input?id=<%=count%>&sql=<%=queryStr%>&orderby=<%=orderby%>&field=<%=col%>"
                   ><div><%=col%></div>
 
-                  <%if(orderby=="asc" && field == col){%> &#x25B5; <%}else
-                  if(orderby=="desc" && field == col){%> &#x25BF; <%}%>
+                  <%if(orderby=="asc" && field == col){%>&#x25BF; <%}else
+                  if(orderby=="desc" && field == col){%>&#x25B5; <%}%>
                 </a>
               </th>
               <%});%>

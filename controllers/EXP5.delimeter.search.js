@@ -3,8 +3,6 @@ const con = require("../connection/connection");
 exports.runQuery = (req, res) => {
   let body = req.body.input + ".";
 
-  body = body.split(" ").join("");
-
   const fname = [];
   const lname = [];
   const email = [];
@@ -63,19 +61,6 @@ exports.runQuery = (req, res) => {
       }
     }
 
-    function stringForm(arr, field) {
-      let tempStr = "";
-      arr.forEach((element) => {
-        if (element == undefined) {
-          tempStr = tempStr + field + " like '%' or ";
-        } else {
-          tempStr = tempStr + field + " like '" + element + "%' or ";
-        }
-      });
-
-      return tempStr.slice(0, -4);
-    }
-
     const fname_str = stringForm(fname, "std_fname");
     const lname_str = stringForm(lname, "std_lname");
     const email_str = stringForm(email, "email");
@@ -84,18 +69,6 @@ exports.runQuery = (req, res) => {
 
     let queryholder = [fname_str, lname_str, email_str, city_str, sem_str];
     let query = queryGen(queryholder);
-
-    function queryGen(queryholder) {
-      let random = "";
-      queryholder.forEach((element) => {
-        if (element == "") {
-          random = random + "";
-        } else {
-          random = random + "(" + element + ") and";
-        }
-      });
-      return random.slice(0, -4);
-    }
 
     sql = `select std_fname as First_Name,std_lname as Last_Name,email as Email,city as City,sem as Semester from std_master where ${query};`;
   } else {
@@ -122,3 +95,27 @@ exports.runQuery = (req, res) => {
     }
   });
 };
+
+function queryGen(queryholder) {
+  let random = "";
+  queryholder.forEach((element) => {
+    if (element == "") {
+      random = random + "";
+    } else {
+      random = random + "(" + element + ") and";
+    }
+  });
+  return random.slice(0, -4);
+}
+function stringForm(arr, field) {
+  let tempStr = "";
+  arr.forEach((element) => {
+    if (element == undefined) {
+      tempStr = tempStr + field + " like '%' or ";
+    } else {
+      tempStr = tempStr + field + " like '" + element + "%' or ";
+    }
+  });
+
+  return tempStr.slice(0, -4);
+}
